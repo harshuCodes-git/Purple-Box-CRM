@@ -10,6 +10,7 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
+				"primary-dark": "#0C0D0D",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -55,7 +56,17 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+			fontFamily: {
+				gotham: [
+					'Gotham',
+					'sans-serif'
+				],
+				agrandir: [
+					'Agrandir',
+					'sans-serif'
+				]
+			},
   	}
   },
   plugins: [require("tailwindcss-animate")],
