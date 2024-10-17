@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import Sidebar from '@/components/Sidebar'
 
 const CRMDashboard = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true)
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
 
   return (
     <>
