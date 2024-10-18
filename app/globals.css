@@ -239,4 +239,10 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  .bg-gradient {
+    @apply bg-gradient-to-r from-[#571FC4] to-[#CB6CE6]
+  }
+  .text-gradient {
+    @apply bg-gradient-to-r text-transparent bg-clip-text from-[#571FC4] to-[#CB6CE6]
+  }
 }

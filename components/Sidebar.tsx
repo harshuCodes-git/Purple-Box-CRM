@@ -27,7 +27,7 @@ const Sidebar = ({ isOpen, setIsOpen } : sidebarProps ) => {
         </div>
         <div onClick={() => setIsOpen(!isOpen)} className="hover:bg-white/10 transition-all p-2 rounded-full flex justify-between items-center">
           <ChevronsRight className={cn(
-            "text-white transition-all duration-500 cursor-pointer ",
+            "text-white transition-all duration-500 cursor-pointer",
             isOpen && 'rotate-180'
           )} />
         </div>
