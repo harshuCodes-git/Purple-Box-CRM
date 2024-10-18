@@ -69,7 +69,7 @@ const CRMDashboard = () => {
             </div>
 
             {/* Customer Relationship Manager */}
-            <div className='p-4 w-full overflow-x-hidden'>
+            <div className='p-4 w-full overflow-hidden'>
               <Dashboard />
             </div>
           </div>
