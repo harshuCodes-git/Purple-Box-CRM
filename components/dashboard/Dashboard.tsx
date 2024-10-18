@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { closestCorners, DndContext, DragOverlay, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import EntriesColumn from './EntriesColumn';
@@ -123,7 +123,6 @@ const Dashboard = () => {
 
   const [activeId, setActiveId] = useState<string | null>(null);
 
-
   const findActiveTask = (id: string) => {
     for (const column of Object.values(columns)) {
       const task = column.tasks.find(task => task.id === id);
@@ -194,7 +193,7 @@ const Dashboard = () => {
   return (
     <div>
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
-        <div className='flex gap-x-4 overflow-x-scroll min-h-[550px] scroll-container'>
+        <div className='flex gap-x-4 overflow-x-scroll overflow-y-hidden min-h-[550px] scroll-container'>
           {Object.entries(columns).map(([columnId, { name, tasks }]) => (
             <EntriesColumn key={columnId} name={name} tasks={tasks} />
           ))}
