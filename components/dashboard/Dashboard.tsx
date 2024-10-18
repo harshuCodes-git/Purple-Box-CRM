@@ -193,7 +193,7 @@ const Dashboard = () => {
   return (
     <div>
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
-        <div className='flex gap-x-4 overflow-x-scroll overflow-y-hidden min-h-[550px] scroll-container scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-300'>
+        <div className='flex gap-x-4 overflow-x-scroll overflow-y-hidden min-h-[550px] scroll-container'>
           {Object.entries(columns).map(([columnId, { name, tasks }]) => (
             <EntriesColumn key={columnId} name={name} tasks={tasks} />
           ))}
