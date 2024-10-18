@@ -13,6 +13,9 @@ const config: Config = {
 				"primary-dark": "#0C0D0D",
 				"primary-purple": "#571FC4",
 				"primary-pink": "#CB6CE6",
+				"status-green": "#7FDF4B",
+				"status-orange": "#EEBA56",
+				"status-red": "#E5342F",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
