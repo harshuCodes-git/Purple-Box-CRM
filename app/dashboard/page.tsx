@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import Sidebar from '@/components/Sidebar'
 import { Input } from '@/components/ui/input'
 import { Bell, ListFilter } from 'lucide-react';
+import Dashboard from '@/components/dashboard/Dashboard'
 
 const CRMDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
@@ -19,7 +20,7 @@ const CRMDashboard = () => {
       <div className='p-4 h-screen font-gotham'>
         <div 
           className={cn(
-            'relative transition-all w-auto h-full rounded-xl p-[1px] ml-[70px] bg-gradient',
+            'relative transition-all duration-500 w-auto h-full rounded-xl p-[1px] ml-[70px] bg-gradient',
             isSidebarOpen && 'ml-[325px]'
           )}
         >
@@ -67,6 +68,10 @@ const CRMDashboard = () => {
               </div>
             </div>
 
+            {/* Customer Relationship Manager */}
+            <div className='p-4'>
+              <Dashboard />
+            </div>
           </div>
         </div>
       </div>
