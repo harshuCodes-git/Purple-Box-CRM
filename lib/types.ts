@@ -1,6 +1,9 @@
+import { Icon, LucideProps } from 'lucide-react'; 
+
 export type Task = {
   id: string;
   title?: string;
+  social?: React.FC<LucideProps>;
   userName?: string;
   contactInfo?: {
     email: string;
@@ -13,5 +16,6 @@ export type Task = {
 
 export type Column = {
   name: string;
+  icon?: React.FC<LucideProps>;
   tasks: Task[];
 };

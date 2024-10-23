@@ -6,6 +6,16 @@ import Sidebar from '@/components/Sidebar'
 import { Input } from '@/components/ui/input'
 import { Bell, ListFilter } from 'lucide-react';
 import Dashboard from '@/components/dashboard/Dashboard'
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 const CRMDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
@@ -50,9 +60,14 @@ const CRMDashboard = () => {
             {/* Statistics */}
             <div className='#CB6CE6 pb-[1px] w-full bg-gradient rounded-t-xl text-[14px]'>
               <div className='w-full pl-8 pr-32 pb-2 pt-3 bg-[#0A0A0A] rounded-t-xl flex items-center justify-between text-white font-agrandir'>
-                <div className='flex gap-x-4 items-center'>
-                  Filter <ListFilter className='w-4 h-4' />
-                </div>
+                <Sheet>
+                  <SheetTrigger className='flex gap-x-4 items-center'>
+                    Filter <ListFilter className='w-4 h-4' />
+                  </SheetTrigger>
+                  <SheetContent>
+
+                  </SheetContent>
+                </Sheet>
                 <div className='h-full py-3 w-[1px] bg-white/25'  />
                 <div>
                   Customer Acquisition Rate: <span className='text-status-green'>80%</span>
