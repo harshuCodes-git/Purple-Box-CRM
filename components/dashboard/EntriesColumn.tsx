@@ -5,9 +5,8 @@ import { Column } from '@/lib/types';
 const EntriesColumn = ({ tasks, name, icon: ColumnIcon }: Column) => {
   return (
     <div className="bg-[#0B0B0F] backdrop-blur-sm rounded-xl p-4 shadow-sm relative h-[525px] w-full overflow-hidden text-white">
-      <h5 className="font-medium text-start w-full pb-4 flex items-center">
-        {/* Render Column Icon as a React component */}
-        {ColumnIcon && <ColumnIcon className="w-6 h-6 mr-2" />} 
+      <h5 className="font-medium text-start w-full pb-4 flex items-center text-sm">
+        {ColumnIcon && <ColumnIcon className="w-4 h-4 mr-2" />} 
         {name}
       </h5>
       <div className="overflow-y-auto scrollbar-hide flex items-center justify-start flex-col h-full no-scrollbar">
