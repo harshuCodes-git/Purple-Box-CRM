@@ -6,11 +6,14 @@ import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import EntriesColumn from './EntriesColumn';
 import EntriesCard from './EntriesCard';
 import { Column } from '@/lib/types';
+import { Users } from 'lucide-react';
+import { Handshake } from 'lucide-react';
+import { Box } from 'lucide-react';
 
 const Dashboard = () => {
   const [columns, setColumns] = useState<Record<string, Column>>({
     column1: {
-      name: "New Leads",
+      name: "Customer Support",
       tasks: [{id: '11', title: "Placeholder (Do not move)"}, {
         id: '1',
         userName: "John Doe",
@@ -21,7 +24,7 @@ const Dashboard = () => {
       }]
     },
     column2: {
-      name: "No Interested",
+      name: "Customer Acquisition",
       tasks: [{id: '20', title: "Placeholder (Do not move)"}, {
         id: '2',
         userName: "Jane Smith",
@@ -32,7 +35,7 @@ const Dashboard = () => {
       }]
     },
     column3: {
-      name: "Interaction1 OK",
+      name: "Other",
       tasks: [{id: '30', title: "Placeholder (Do not move)"}, {
         id: '3',
         userName: "Michael Johnson",
@@ -42,83 +45,6 @@ const Dashboard = () => {
         notes: "Scheduled follow-up"
       }]
     },
-    column4: {
-      name: "Interaction2 OK",
-      tasks: [{id: '40', title: "Placeholder (Do not move)"}, {
-        id: '4',
-        userName: "Sarah Brown",
-        contactInfo: { email: "sarah.brown@example.com", phone: "777-987-6543" },
-        interactionHistory: ["Product trial", "Decision maker meeting"],
-        status: "Active",
-        notes: "Needs pricing information"
-      }]
-    },
-    column5: {
-      name: "Interaction3 OK",
-      tasks: [{id: '50', title: "Placeholder (Do not move)"}, {
-        id: '5',
-        userName: "Robert Lee",
-        contactInfo: { email: "robert.lee@example.com", phone: "111-222-3333" },
-        interactionHistory: ["Contract negotiation"],
-        status: "Active",
-        notes: "Finalizing terms"
-      }]
-    },
-    column6: {
-      name: "Pre-Qualified",
-      tasks: [{id: '60', title: "Placeholder (Do not move)"}, {
-        id: '6',
-        userName: "Emily Davis",
-        contactInfo: { email: "emily.davis@example.com", phone: "444-555-6666" },
-        interactionHistory: ["Qualification call"],
-        status: "Qualified",
-        notes: "Needs demo of advanced features"
-      }]
-    },
-    column7: {
-      name: "Deal Closed",
-      tasks: [{id: '70', title: "Placeholder (Do not move)"}, {
-        id: '7',
-        userName: "David Wilson",
-        contactInfo: { email: "david.wilson@example.com", phone: "999-888-7777" },
-        interactionHistory: ["Signed contract"],
-        status: "Closed",
-        notes: "Upsell opportunity for future"
-      }]
-    },
-    column8: {
-      name: "FeedBack",
-      tasks: [{id: '80', title: "Placeholder (Do not move)"}, {
-        id: '8',
-        userName: "Olivia Martinez",
-        contactInfo: { email: "olivia.martinez@example.com", phone: "333-777-9999" },
-        interactionHistory: ["User feedback session"],
-        status: "Pending",
-        notes: "Issues with current setup"
-      }]
-    },
-    column9: {
-      name: "FollowUp",
-      tasks: [{id: '90', title: "Placeholder (Do not move)"}, {
-        id: '9',
-        userName: "Daniel White",
-        contactInfo: { email: "daniel.white@example.com", phone: "666-444-2222" },
-        interactionHistory: ["Follow-up email sent"],
-        status: "Active",
-        notes: "Awaiting response"
-      }]
-    },
-    column10: {
-      name: "Ended",
-      tasks: [{id: '100', title: "Placeholder (Do not move)"}, {
-        id: '10',
-        userName: "Sophia Brown",
-        contactInfo: { email: "sophia.brown@example.com", phone: "222-999-8888" },
-        interactionHistory: ["Final review"],
-        status: "Closed",
-        notes: "Client opted out"
-      }]
-    }
   });
 
   const [activeId, setActiveId] = useState<string | null>(null);

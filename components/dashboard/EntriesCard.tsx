@@ -12,8 +12,8 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
   
   return (
     <div 
-      className='p-2 mb-2 text-sm bg-white/100 rounded-md shadow-sm w-full' 
-      ref={setNodeRef} 
+      className='p-2 mb-2 text-sm bg-[#0E0C1A] border-2 border-primary-purple/50 rounded-lg shadow-sm w-full text-white' 
+      ref={setNodeRef}  
       {...attributes} 
       {...listeners}
       style={style}

@@ -11,8 +11,8 @@ type sidebarProps = {
 const Sidebar = ({ isOpen, setIsOpen } : sidebarProps ) => {
   return (
     <div className={cn(
-      'absolute w-[320px] left-0 h-screen bg-primary-dark transition-all duration-500 z-20 flex flex-col p-4 border-r-2 border-white/5',
-      isOpen ? 'translate-x-[0] border-none' : 'translate-x-[-250px]'
+      'absolute w-[320px] left-0 h-screen bg-primary-dark transition-all duration-500 z-20 flex flex-col p-4 border-r-2 border-primary-purple/50',
+      isOpen ? 'translate-x-[0] border-r-2 border-primary-purple/100' : 'translate-x-[-250px]'
     )}>
 
       {/* Header */}

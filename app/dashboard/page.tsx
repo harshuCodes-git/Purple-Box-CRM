@@ -29,19 +29,19 @@ const CRMDashboard = () => {
             {/* Header */}
             <div className='#CB6CE6 pb-[1px] w-full bg-gradient rounded-t-xl'>
               <div className='w-full px-8 py-2 bg-[#0A0A0A] rounded-t-xl flex items-center justify-between'>
-                <p className='text-xl font-bold'>
+                <p className='text-md font-bold'>
                   <span className='bg-gradient-to-r text-transparent bg-clip-text from-[#571FC4] to-[#CB6CE6] '>
                     Your Customer
                   </span>
                 </p>
 
-                <div className='flex gap-x-8 items-center'>
+                <div className='flex gap-x-4 items-center'>
                   <Input 
-                    className='rounded-full border-[1px] placeholder:text-white/50 text-white min-w-[300px] focus:border-[#CB6CE6]'
+                    className='rounded-md h-[25px] border-[1px] placeholder:text-white/50 text-white min-w-[300px] focus:border-[#CB6CE6]'
                     placeholder='Search customer...'
                   />
                   <div className="hover:bg-white/10 hover:text-[#CB6CE6] transition-all p-2 rounded-full flex justify-between items-center cursor-pointer">
-                    <Bell className='w-6 h-6 text-white hover:text-[#CB6CE6]'/>
+                    <Bell className='w-4 h-4 text-white hover:text-[#CB6CE6]'/>
                   </div>
                 </div>
               </div>
@@ -49,7 +49,7 @@ const CRMDashboard = () => {
 
             {/* Statistics */}
             <div className='#CB6CE6 pb-[1px] w-full bg-gradient rounded-t-xl text-[14px]'>
-              <div className='w-full pl-8 pr-32 py-2 bg-[#0A0A0A] rounded-t-xl flex items-center justify-between text-white'>
+              <div className='w-full pl-8 pr-32 pb-2 pt-3 bg-[#0A0A0A] rounded-t-xl flex items-center justify-between text-white font-agrandir'>
                 <div className='flex gap-x-4 items-center'>
                   Filter <ListFilter className='w-4 h-4' />
                 </div>
