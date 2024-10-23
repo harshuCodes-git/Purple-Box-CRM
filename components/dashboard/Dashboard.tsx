@@ -152,6 +152,7 @@ const Dashboard = () => {
               interactionHistory={activeTask.interactionHistory}
               status={activeTask.status}
               notes={activeTask.notes}
+              social={activeTask.social}
             />
           ) : 
             null

@@ -18,8 +18,8 @@ const Sidebar = ({ isOpen, setIsOpen } : sidebarProps ) => {
       {/* Header */}
       <div className="flex items-center w-full justify-between">
         <div className="pl-2 justify-between flex items-center gap-x-4">
-          <div className="bg-white text-primary-dark py-1 px-3 rounded-lg font-bold">
-              A
+          <div className="bg-gradient-to-br from-primary-purple to-primary-pink text-white py-1 px-3 rounded-lg font-bold">
+              P
           </div>
           <p className="font-gotham text-white text-[18px]">
             Purple Box

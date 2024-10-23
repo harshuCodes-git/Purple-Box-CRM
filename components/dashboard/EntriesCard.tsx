@@ -3,13 +3,14 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Task } from '@/lib/types';
-import { Icon } from 'lucide-react';
+import { Send, SendHorizontal } from 'lucide-react';
 import { EllipsisVertical } from 'lucide-react';
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from '@/components/ui/hover-card';
+import { Button } from '../ui/button';
 
 const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, status, notes, social: SocialIcon }: Task) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
@@ -59,7 +60,7 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
           {interactionHistory.map((interaction, index) => (
             <li
               key={index}
-              className="text-xs border-2 border-[#33353C]/50 bg-[#18113E] px-2 py-1 rounded-md"
+              className="text-xs border-2 border-white/10 bg-[#18113E] px-2 py-1 rounded-md"
             >
               {interaction}
             </li>
@@ -70,6 +71,10 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
       <div className="absolute bottom-4 right-4">
         <div className={`${statusColor} h-2 w-2 rounded-full`} />
       </div>
+
+      <Button className='text-xs font-gotham mt-8 rounded-full bg-transparent flex items-center gap-x-2 hover:gap-x-4 transition-all border-white text-white hover:bg-purple-100/10 hover:text-white font-light' variant={"outline"} size={"sm"}>
+        Go To Conversation <SendHorizontal />
+      </Button>
     </div>
   );
 };
