@@ -74,11 +74,11 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
         <div className={`${statusColor} h-2 w-2 rounded-full`} />
       </div>
 
-      <div className='flex items-center justify-start gap-x-2 mt-4'>
+      <div className='flex flex-col gap-y-2 items-start justify-center gap-x-2 mt-4'>
         <Button className='text-xs font-gotham rounded-full bg-transparent flex items-center gap-x-2 hover:gap-x-4 transition-all border-white text-white hover:bg-purple-100/10 hover:text-white font-light' variant={"outline"} size={"sm"}>
           Go To Conversation <SendHorizontal />
         </Button>
-        <div className='flex items-center justify-center'>
+        <div className='flex justify-center'>
           {
             urgency === "High" && (
               <div className='text-red-500 border-2 border-red-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1'>
