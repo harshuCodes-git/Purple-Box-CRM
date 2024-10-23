@@ -11,6 +11,7 @@ import { Handshake } from 'lucide-react';
 import { Box } from 'lucide-react';
 import { Instagram } from 'lucide-react';
 import { Mails } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 
 const Dashboard = () => {
   const [columns, setColumns] = useState<Record<string, Column>>({
@@ -22,7 +23,7 @@ const Dashboard = () => {
         {
           id: '1',
           userName: "John Doe",
-          social: Instagram,  
+          social: MessageCircle,  
           contactInfo: { email: "john.doe@example.com", phone: "123-456-7890" },
           interactionHistory: ["Initial contact", "Follow-up call"],
           status: "Closed",
@@ -54,7 +55,7 @@ const Dashboard = () => {
         {
           id: '3',
           userName: "Michael Johnson",
-          social: Instagram,
+          social: MessageCircle,
           contactInfo: { email: "michael.johnson@example.com", phone: "555-123-4567" },
           interactionHistory: ["Demo session", "Positive feedback"],
           status: "Active",

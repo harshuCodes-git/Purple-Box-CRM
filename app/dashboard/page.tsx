@@ -47,7 +47,7 @@ const CRMDashboard = () => {
 
                 <div className='flex gap-x-4 items-center'>
                   <Input 
-                    className='rounded-md h-[25px] border-[1px] placeholder:text-white/50 text-white min-w-[300px] focus:border-[#CB6CE6]'
+                    className='rounded-md h-[25px] border-[1px] placeholder:text-xs placeholder:text-white/50 text-white min-w-[300px] focus:border-[#CB6CE6]'
                     placeholder='Search customer...'
                   />
                   <div className="hover:bg-white/10 hover:text-[#CB6CE6] transition-all p-2 rounded-full flex justify-between items-center cursor-pointer">

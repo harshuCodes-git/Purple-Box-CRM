@@ -41,11 +41,11 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
         </HoverCardContent>
       </HoverCard>
 
-      <div>
+      <div className='flex flex-col gap-y-[4px]'>
         {title && <p className="text-sm">{title}</p>}
-        <div className='flex gap-x-4 items-center'>
+        <div className='flex items-center'>
           {userName && <p className="font-medium text-xl font-gotham">{userName}</p>}
-          {SocialIcon && <SocialIcon className="w-4 h-4 inline-block ml-2" />}
+          {SocialIcon && <SocialIcon className="w-5 h-5 inline-block ml-2" />}
         </div>
         {contactInfo && (
           <p className="text-sm">
@@ -59,7 +59,7 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
           {interactionHistory.map((interaction, index) => (
             <li
               key={index}
-              className="text-sm border-2 border-[#33353C]/50 bg-[#18113E] px-2 py-1 rounded-md"
+              className="text-xs border-2 border-[#33353C]/50 bg-[#18113E] px-2 py-1 rounded-md"
             >
               {interaction}
             </li>
