@@ -25,7 +25,8 @@ const EntriesColumn = ({ tasks, name, icon: ColumnIcon }: Column) => {
                 interactionHistory={task.interactionHistory}
                 status={task.status}
                 notes={task.notes}
-                social={task.social}  // Pass social icon directly as a component
+                social={task.social} 
+                urgency={task.urgency}
               />
             ))
           )}

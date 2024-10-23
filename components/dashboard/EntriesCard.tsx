@@ -3,7 +3,7 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Task } from '@/lib/types';
-import { Send, SendHorizontal } from 'lucide-react';
+import { SendHorizontal } from 'lucide-react';
 import { EllipsisVertical } from 'lucide-react';
 import {
   HoverCard,
@@ -11,8 +11,10 @@ import {
   HoverCardTrigger,
 } from '@/components/ui/hover-card';
 import { Button } from '../ui/button';
+import { TriangleAlert } from 'lucide-react';
+import { CircleAlert } from 'lucide-react';
 
-const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, status, notes, social: SocialIcon }: Task) => {
+const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, status, notes, social: SocialIcon, urgency }: Task) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
   const style = {
@@ -32,8 +34,8 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
     >
       <HoverCard>
         <HoverCardTrigger asChild>
-          <div className="absolute top-4 right-4 bg-[#17181A] border-2 border-[#33353C] rounded-md cursor-pointer">
-            <EllipsisVertical className="w-4 h-4 text-white/75" />
+          <div className="absolute top-4 right-4 bg-[#17181A] border-2 border-white/10 rounded-md cursor-pointer">
+            <EllipsisVertical className="w-5 h-5 text-white p-1" />
           </div>
         </HoverCardTrigger>
         <HoverCardContent className="absolute z-20 -translate-x-[250px] -translate-y-[25px] text-black/75 bg-white shadow-lg p-2 rounded-md">
@@ -72,9 +74,27 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
         <div className={`${statusColor} h-2 w-2 rounded-full`} />
       </div>
 
-      <Button className='text-xs font-gotham mt-8 rounded-full bg-transparent flex items-center gap-x-2 hover:gap-x-4 transition-all border-white text-white hover:bg-purple-100/10 hover:text-white font-light' variant={"outline"} size={"sm"}>
-        Go To Conversation <SendHorizontal />
-      </Button>
+      <div className='flex items-center justify-start gap-x-2 mt-4'>
+        <Button className='text-xs font-gotham rounded-full bg-transparent flex items-center gap-x-2 hover:gap-x-4 transition-all border-white text-white hover:bg-purple-100/10 hover:text-white font-light' variant={"outline"} size={"sm"}>
+          Go To Conversation <SendHorizontal />
+        </Button>
+        <div className='flex items-center justify-center'>
+          {
+            urgency === "High" && (
+              <div className='text-red-500 border-2 border-red-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1'>
+                High Urgency <TriangleAlert className='h-4 w-4' />
+              </div>
+            )
+          }
+          {
+            urgency === "Mid" && (
+              <div className='text-yellow-500 border-2 border-yellow-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1'>
+                Mid Urgency <CircleAlert className='h-4 w-4' />
+              </div>
+            )
+          }
+        </div>
+      </div>
     </div>
   );
 };

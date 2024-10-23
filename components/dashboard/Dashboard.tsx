@@ -28,6 +28,7 @@ const Dashboard = () => {
           interactionHistory: ["Initial contact", "Follow-up call"],
           status: "Closed",
           notes: "Not happy in product X",
+          urgency: "High"
         },
       ],
     },
@@ -60,6 +61,7 @@ const Dashboard = () => {
           interactionHistory: ["Demo session", "Positive feedback"],
           status: "Active",
           notes: "Scheduled follow-up",
+          urgency: "Mid"
         },
       ],
     },
@@ -153,6 +155,7 @@ const Dashboard = () => {
               status={activeTask.status}
               notes={activeTask.notes}
               social={activeTask.social}
+              urgency={activeTask.urgency}
             />
           ) : 
             null

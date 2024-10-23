@@ -12,6 +12,7 @@ export type Task = {
   interactionHistory?: string[];
   status?: string;
   notes?: string;
+  urgency?: string;
 };
 
 export type Column = {
