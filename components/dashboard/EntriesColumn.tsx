@@ -19,6 +19,8 @@ const EntriesColumn = ({ tasks, name, icon: ColumnIcon }: Column) => {
   const [filteredTasks, setFilteredTasks] = useState(tasks);
 
   useEffect(() => {
+    console.log("Filter:", filter)
+
     const applyFilter = () => {
       if (filter.type === 'Status') {
         setFilteredTasks(tasks.filter(task => task.status === filter.value));
@@ -52,44 +54,48 @@ const EntriesColumn = ({ tasks, name, icon: ColumnIcon }: Column) => {
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Filter by Status</SelectLabel>
-              <SelectItem value="Open">Open</SelectItem>
-              <SelectItem value="Closed">Closed</SelectItem>
-              <SelectItem value="Active">Active</SelectItem>
+              <SelectItem value="Status:Open">Open</SelectItem>
+              <SelectItem value="Status:Closed">Closed</SelectItem>
+              <SelectItem value="Status:Active">Active</SelectItem>
             </SelectGroup>
             <SelectGroup>
               <SelectLabel>Filter by Urgency</SelectLabel>
-              <SelectItem value="High">High</SelectItem>
-              <SelectItem value="Mid">Mid</SelectItem>
-              <SelectItem value="Low">Low</SelectItem>
+              <SelectItem value="Urgency:High">High</SelectItem>
+              <SelectItem value="Urgency:Mid">Mid</SelectItem>
+              <SelectItem value="Urgency:Low">Low</SelectItem>
             </SelectGroup>
             <SelectGroup>
               <SelectLabel>Filter by Interaction</SelectLabel>
-              <SelectItem value="Initial Contact">Initial Contact</SelectItem>
-              <SelectItem value="Follow-up">Follow-up</SelectItem>
-              <SelectItem value="Demo Session">Demo Session</SelectItem>
+              <SelectItem value="Interaction:Initial Contact">Initial Contact</SelectItem>
+              <SelectItem value="Interaction:Follow-up">Follow-up</SelectItem>
+              <SelectItem value="Interaction:Demo Session">Demo Session</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
       </h5>
       <div className="overflow-y-auto scrollbar-hide flex items-center justify-start flex-col h-full no-scrollbar">
         <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
-          {tasks.length === 0 ? (
+          {filteredTasks.length === 0 ? (
             <div className="placeholder p-4 text-gray-500">No tasks</div>
           ) : (
-            tasks.map((task) => (
-              <EntriesCard
-                key={task.id}
-                id={task.id}
-                title={task.title}
-                userName={task.userName}
-                contactInfo={task.contactInfo}
-                interactionHistory={task.interactionHistory}
-                status={task.status}
-                notes={task.notes}
-                social={task.social} 
-                urgency={task.urgency}
-              />
-            ))
+            <div className='w-full pb-20'>
+              {
+                filteredTasks.map((task) => (
+                  <EntriesCard
+                    key={task.id}
+                    id={task.id}
+                    title={task.title}
+                    userName={task.userName}
+                    contactInfo={task.contactInfo}
+                    interactionHistory={task.interactionHistory}
+                    status={task.status}
+                    notes={task.notes}
+                    social={task.social} 
+                    urgency={task.urgency}
+                  />
+                ))
+              }
+            </div>
           )}
         </SortableContext>
       </div>
