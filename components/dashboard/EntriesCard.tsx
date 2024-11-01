@@ -14,7 +14,7 @@ import { Button } from '../ui/button';
 import { TriangleAlert } from 'lucide-react';
 import { CircleAlert } from 'lucide-react';
 
-const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, status, notes, social: SocialIcon, urgency }: Task) => {
+const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, status, notes, social: SocialIcon, urgency, subcategory, timestamp }: Task) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
   const style = {
@@ -43,7 +43,7 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
           {notes && <p className="text-[13px]">Notes: {notes}</p>}
         </HoverCardContent>
       </HoverCard>
-
+      {/* Card Content */}
       <div className='flex flex-col gap-y-[4px]'>
         {title && <p className="text-sm">{title}</p>}
         <div className='flex items-center'>
@@ -56,7 +56,7 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
           </p>
         )}
       </div>
-
+      {/* Interaction History */}
       {interactionHistory && interactionHistory.length > 0 && (
         <ul className="flex flex-wrap gap-2 mt-4">
           {interactionHistory.map((interaction, index) => (
@@ -69,39 +69,43 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
           ))}
         </ul>
       )}
-
-      <div className="absolute bottom-4 right-4">
+      {/* Status */}
+      <div className="absolute bottom-4 right-4 flex items-center justify-center gap-x-4">
+        {/* Sub Category */}
+        {subcategory && (
+          <p className="text-xs text-white/80">{subcategory}</p>
+        )}
         <div className={`${statusColor} h-2 w-2 rounded-full`} />
       </div>
-
+      {/* Urgency */}
       <div className='flex flex-col gap-y-2 items-start justify-center gap-x-2 mt-4'>
         <Button className='text-xs font-gotham rounded-full bg-transparent flex items-center gap-x-2 hover:gap-x-4 transition-all border-white text-white hover:bg-purple-100/10 hover:text-white font-light' variant={"outline"} size={"sm"}>
           Go To Conversation <SendHorizontal />
         </Button>
         <div className='flex justify-center'>
-          {
-            urgency === "High" && (
+          {urgency === "High" && (
               <div className='text-red-500 border-2 border-red-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1'>
                 High Urgency <TriangleAlert className='h-4 w-4' />
               </div>
-            )
-          }
-          {
-            urgency === "Mid" && (
+          )}
+          {urgency === "Mid" && (
               <div className='text-yellow-500 border-2 border-yellow-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1'>
                 Mid Urgency <CircleAlert className='h-4 w-4' />
               </div>
-            )
-          }
-          {
-            urgency === "Low" && (
+          )}
+          {urgency === "Low" && (
               <div className='text-green-500 border-2 border-green-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1'>
                 Low Urgency <CheckCircle className='h-4 w-4' />
               </div>
-            )
-          }
+          )}
         </div>
       </div>
+      {/* Timestamp */}
+      {timestamp && (
+        <p className="text-xs text-white/75 mt-4">
+          {new Date(timestamp).toLocaleDateString()}
+        </p>
+      )}
     </div>
   );
 };

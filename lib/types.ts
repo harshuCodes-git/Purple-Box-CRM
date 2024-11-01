@@ -1,4 +1,4 @@
-import { Icon, LucideProps } from 'lucide-react'; 
+import { LucideProps } from 'lucide-react'; 
 
 export type Task = {
   id: string;
@@ -13,6 +13,8 @@ export type Task = {
   status?: string;
   notes?: string;
   urgency?: string;
+  subcategory?: string;
+  timestamp?: string;  
 };
 
 export type Column = {

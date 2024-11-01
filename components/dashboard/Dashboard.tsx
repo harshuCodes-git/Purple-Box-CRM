@@ -20,7 +20,7 @@ const Dashboard = () => {
         name: "Customer Support",
         icon: Users,
         tasks: [
-            { id: '11', title: "Placeholder (Do not move)" },
+            { id: '11', title: "Placeholder (Do not move)", subcategory: "Info", timestamp: "2024-10-31T08:30:00Z" },
             {
                 id: '1',
                 userName: "John Doe",
@@ -29,7 +29,9 @@ const Dashboard = () => {
                 interactionHistory: ["Initial contact", "Follow-up call"],
                 status: "Closed",
                 notes: "Not happy with product X",
-                urgency: "High"
+                urgency: "High",
+                subcategory: "Complaint",
+                timestamp: "2024-10-29T10:15:00Z"
             },
             {
                 id: '12',
@@ -39,7 +41,9 @@ const Dashboard = () => {
                 interactionHistory: ["Complaint received"],
                 status: "Open",
                 notes: "Issue with product delivery",
-                urgency: "High"
+                urgency: "High",
+                subcategory: "Delivery Issue",
+                timestamp: "2024-10-30T09:00:00Z"
             },
             {
                 id: '13',
@@ -49,7 +53,9 @@ const Dashboard = () => {
                 interactionHistory: ["Billing question"],
                 status: "Closed",
                 notes: "Resolved billing issue",
-                urgency: "Low"
+                urgency: "Low",
+                subcategory: "Billing",
+                timestamp: "2024-10-25T14:30:00Z"
             },
         ],
     },
@@ -57,7 +63,7 @@ const Dashboard = () => {
         name: "Customer Acquisition",
         icon: Handshake,
         tasks: [
-            { id: '20', title: "Placeholder (Do not move)" },
+            { id: '20', title: "Placeholder (Do not move)", subcategory: "Info", timestamp: "2024-10-31T11:00:00Z" },
             {
                 id: '2',
                 userName: "Jane Smith",
@@ -66,7 +72,9 @@ const Dashboard = () => {
                 interactionHistory: ["Exploratory meeting"],
                 status: "Closed",
                 notes: "Prefers competitor's product",
-                urgency: "Low"
+                urgency: "Low",
+                subcategory: "Competitor",
+                timestamp: "2024-10-27T16:00:00Z"
             },
             {
                 id: '21',
@@ -76,7 +84,9 @@ const Dashboard = () => {
                 interactionHistory: ["Introductory call", "Follow-up email"],
                 status: "Active",
                 notes: "Interested in demo",
-                urgency: "Medium"
+                urgency: "Medium",
+                subcategory: "Prospect",
+                timestamp: "2024-10-29T12:45:00Z"
             },
             {
                 id: '22',
@@ -86,7 +96,9 @@ const Dashboard = () => {
                 interactionHistory: ["Initial interest form"],
                 status: "Open",
                 notes: "Awaiting product details",
-                urgency: "High"
+                urgency: "High",
+                subcategory: "Potential Lead",
+                timestamp: "2024-10-28T13:30:00Z"
             },
         ],
     },
@@ -94,7 +106,7 @@ const Dashboard = () => {
         name: "Other",
         icon: Box,
         tasks: [
-            { id: '30', title: "Placeholder (Do not move)" },
+            { id: '30', title: "Placeholder (Do not move)", subcategory: "Info", timestamp: "2024-10-31T14:45:00Z" },
             {
                 id: '3',
                 userName: "Michael Johnson",
@@ -103,7 +115,9 @@ const Dashboard = () => {
                 interactionHistory: ["Demo session", "Positive feedback"],
                 status: "Active",
                 notes: "Scheduled follow-up",
-                urgency: "Mid"
+                urgency: "Mid",
+                subcategory: "Demo",
+                timestamp: "2024-10-30T10:00:00Z"
             },
             {
                 id: '31',
@@ -113,7 +127,9 @@ const Dashboard = () => {
                 interactionHistory: ["Inquiry about warranty"],
                 status: "Closed",
                 notes: "Warranty information provided",
-                urgency: "Low"
+                urgency: "Low",
+                subcategory: "Support Inquiry",
+                timestamp: "2024-10-26T09:15:00Z"
             },
             {
                 id: '32',
@@ -123,11 +139,14 @@ const Dashboard = () => {
                 interactionHistory: ["General feedback"],
                 status: "Open",
                 notes: "Likes product, suggested improvements",
-                urgency: "Low"
+                urgency: "Low",
+                subcategory: "Feedback",
+                timestamp: "2024-10-25T08:45:00Z"
             },
         ],
-    },
-});
+      },
+    }
+  );              
 
   const [activeId, setActiveId] = useState<string | null>(null);
 
@@ -201,11 +220,13 @@ const Dashboard = () => {
   return (
     <div>
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
+        {/* Display Column */}
         <div className='flex gap-x-4 overflow-x-scroll overflow-y-hidden min-h-[550px] scroll-container'>
           {Object.entries(columns).map(([columnId, { name, icon, tasks }]) => (
             <EntriesColumn key={columnId} name={name} icon={icon} tasks={tasks} />
           ))}
         </div>
+        {/* On Drag Display Card */}
         <DragOverlay>
           {activeTask ? (
             <EntriesCard 
