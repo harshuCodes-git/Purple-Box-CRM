@@ -49,7 +49,7 @@ const EntriesColumn = ({ tasks, name, icon: ColumnIcon }: Column) => {
           const [type, val] = value.split(':');
           setFilter({ type, value: val });
         }}>
-          <SelectTrigger className='max-w-[100px]'>
+          <SelectTrigger className='max-w-[100px] font-normal text-[14px]'>
             <SelectValue placeholder="Filter" />
           </SelectTrigger>
           <SelectContent>

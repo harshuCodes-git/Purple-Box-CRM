@@ -56,18 +56,33 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
           </p>
         )}
       </div>
-      {/* Interaction History */}
       {interactionHistory && interactionHistory.length > 0 && (
-        <ul className="flex flex-wrap gap-2 mt-4">
-          {interactionHistory.map((interaction, index) => (
-            <li
+        <div className="flex flex-wrap gap-2 mt-4">
+          {interactionHistory.slice(0, 3).map((interaction, index) => (
+            <span
               key={index}
               className="text-xs border-2 border-white/10 bg-[#18113E] px-2 py-1 rounded-md"
             >
               {interaction}
-            </li>
+            </span>
           ))}
-        </ul>
+          {interactionHistory.length > 3 && (
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <span className="text-xs border-2 border-white/10 bg-[#18113E] px-2 py-1 rounded-md cursor-pointer">
+                  +{interactionHistory.length - 3} more
+                </span>
+              </HoverCardTrigger>
+              <HoverCardContent className="z-20 text-black/75 bg-white shadow-lg p-2 rounded-md max-w-xs">
+                <ul className="text-xs text-gray-700">
+                  {interactionHistory.slice(3).map((interaction, index) => (
+                    <li key={index}>{interaction}</li>
+                  ))}
+                </ul>
+              </HoverCardContent>
+            </HoverCard>
+          )}
+        </div>
       )}
       {/* Status */}
       <div className="absolute bottom-4 right-4 flex items-center justify-center gap-x-4">

@@ -2,14 +2,14 @@ import React from 'react'
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Purple Box | AI-Powered CRM for E-commerce",
-  description: "Purple Box is an AI-powered CRM designed to centralize and streamline e-commerce operations. Our platform addresses the critical needs of modern online businesses, from customer support to client acquisition, offering seamless integration across multiple channels.",
+  title: "Purple Box CRM Dashboard | Manage Your E-commerce Relationships",
+  description: "Access the Purple Box CRM dashboard to manage customer interactions, track client acquisition, and enhance support. Designed for e-commerce businesses, Purple Box provides seamless multi-channel integration and AI-powered insights.",
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://purple-box-crm.vercel.app',
-    title: 'Purple Box | AI-Powered CRM for E-commerce',
-    description: 'Discover Purple Box, an AI-driven CRM crafted for e-commerce, focusing on customer engagement, client acquisition, and multi-channel integration for efficient business management.',
+    url: 'https://purple-box-crm.vercel.app/dashboard',
+    title: 'Purple Box CRM Dashboard | Manage Your E-commerce Relationships',
+    description: 'Log in to the Purple Box CRM to manage and grow your e-commerce business. Leverage customer insights, streamline client management, and integrate effortlessly across platforms.',
     siteName: 'Purple Box CRM',
   },
 };
