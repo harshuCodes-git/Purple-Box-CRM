@@ -109,6 +109,8 @@ const Dashboard = () => {
               notes={activeTask.notes}
               social={activeTask.social}
               urgency={activeTask.urgency}
+              subcategory={activeTask.subcategory}
+              timestamp={activeTask.timestamp}
             />
           ) : 
             null

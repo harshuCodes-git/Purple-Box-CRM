@@ -33,17 +33,15 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
       {...listeners}
       style={style}
     >
-      <HoverCard>
-        <HoverCardTrigger asChild>
-          <div className="absolute top-4 right-4 bg-[#17181A] border-2 border-white/10 rounded-md cursor-pointer">
-            <EllipsisVertical className="w-5 h-5 text-white p-1" />
-          </div>
-        </HoverCardTrigger>
-        <HoverCardContent className="absolute z-20 -translate-x-[250px] -translate-y-[25px] text-black/75 bg-white shadow-lg p-2 rounded-md">
-          {status && <p className="text-[13px]">Status: {status}</p>}
-          {notes && <p className="text-[13px]">Notes: {notes}</p>}
-        </HoverCardContent>
-      </HoverCard>
+      <div
+        className={`absolute top-4 right-4 rounded-md border-2 px-2 py-1 text-white/75 ${
+          status === 'Open' ? 'bg-green-500/10 border-green-200' :
+          status === 'Closed' ? 'bg-red-500/10 border-red-200' :
+          status === 'Active' ? 'bg-blue-500/10 border-blue-200' : 'bg-gray-500 border-gray-500'
+        }`}
+      >
+        {status && <p className="text-[13px]">Status: {status}</p>}
+      </div>
       {/* Card Content */}
       <div className="flex flex-col gap-y-[4px]">
         {title && <p className="text-sm text-gray-400">{title}</p>}
@@ -125,6 +123,10 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
               </div>
           )}
         </div>
+      </div>
+      {/* Notes */}
+      <div className='text-white mt-4'>
+        {notes && <p className="text-[13px]">Notes: {notes}</p>}
       </div>
       {/* Timestamp */}
       {timestamp && (
