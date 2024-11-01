@@ -1,4 +1,5 @@
-import { Users, MessageCircle, Phone, Mails, Handshake, Box } from 'lucide-react';
+import { FaWhatsapp, FaEnvelope, FaFacebookMessenger, FaInstagram } from 'react-icons/fa';
+import { Users, Handshake, Box } from 'lucide-react';
 import { Column } from '@/lib/types';
 
 export const columnsData: Record<string, Column> = {
@@ -10,7 +11,7 @@ export const columnsData: Record<string, Column> = {
       {
         id: '1',
         userName: "John Doe",
-        social: MessageCircle,
+        social: FaWhatsapp, // WhatsApp icon
         contactInfo: { email: "john.doe@example.com", phone: "123-456-7890" },
         interactionHistory: [
           "Initial contact", 
@@ -30,7 +31,7 @@ export const columnsData: Record<string, Column> = {
       {
         id: '12',
         userName: "Alice Brown",
-        social: Phone,
+        social: FaEnvelope, // Email icon
         contactInfo: { email: "alice.brown@example.com", phone: "234-567-8901" },
         interactionHistory: ["Complaint received"],
         status: "Open",
@@ -42,7 +43,7 @@ export const columnsData: Record<string, Column> = {
       {
         id: '13',
         userName: "Charlie Green",
-        social: MessageCircle,
+        social: FaFacebookMessenger, // Facebook Messenger icon
         contactInfo: { email: "charlie.green@example.com", phone: "345-678-9012" },
         interactionHistory: ["Billing question"],
         status: "Closed",
@@ -61,7 +62,7 @@ export const columnsData: Record<string, Column> = {
       {
         id: '2',
         userName: "Jane Smith",
-        social: Mails,
+        social: FaEnvelope, // Email icon
         contactInfo: { email: "jane.smith@example.com", phone: "987-654-3210" },
         interactionHistory: [
           "Initial meeting",
@@ -81,7 +82,7 @@ export const columnsData: Record<string, Column> = {
       {
         id: '21',
         userName: "Liam Davis",
-        social: Phone,
+        social: FaWhatsapp, // WhatsApp icon
         contactInfo: { email: "liam.davis@example.com", phone: "456-789-0123" },
         interactionHistory: ["Introductory call", "Follow-up email"],
         status: "Active",
@@ -93,7 +94,7 @@ export const columnsData: Record<string, Column> = {
       {
         id: '22',
         userName: "Emily White",
-        social: MessageCircle,
+        social: FaInstagram, // Instagram icon
         contactInfo: { email: "emily.white@example.com", phone: "567-890-1234" },
         interactionHistory: ["Initial interest form"],
         status: "Open",
@@ -112,7 +113,7 @@ export const columnsData: Record<string, Column> = {
       {
         id: '3',
         userName: "Michael Johnson",
-        social: MessageCircle,
+        social: FaFacebookMessenger, // Facebook Messenger icon
         contactInfo: { email: "michael.johnson@example.com", phone: "555-123-4567" },
         interactionHistory: [
           "Demo session",
@@ -132,7 +133,7 @@ export const columnsData: Record<string, Column> = {
       {
         id: '31',
         userName: "Sarah Lee",
-        social: Phone,
+        social: FaWhatsapp, // WhatsApp icon
         contactInfo: { email: "sarah.lee@example.com", phone: "678-901-2345" },
         interactionHistory: ["Inquiry about warranty"],
         status: "Closed",
@@ -144,7 +145,7 @@ export const columnsData: Record<string, Column> = {
       {
         id: '32',
         userName: "David Miller",
-        social: Mails,
+        social: FaInstagram, // Instagram icon
         contactInfo: { email: "david.miller@example.com", phone: "789-012-3456" },
         interactionHistory: ["General feedback"],
         status: "Open",

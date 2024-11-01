@@ -13,6 +13,7 @@ import {
 import { Button } from '../ui/button';
 import { TriangleAlert } from 'lucide-react';
 import { CircleAlert } from 'lucide-react';
+import { FaWhatsapp, FaEnvelope, FaFacebookMessenger, FaInstagram } from 'react-icons/fa';
 
 const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, status, notes, social: SocialIcon, urgency, subcategory, timestamp }: Task) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
@@ -44,14 +45,24 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
         </HoverCardContent>
       </HoverCard>
       {/* Card Content */}
-      <div className='flex flex-col gap-y-[4px]'>
-        {title && <p className="text-sm">{title}</p>}
-        <div className='flex items-center'>
-          {userName && <p className="font-medium text-xl font-gotham">{userName}</p>}
-          {SocialIcon && <SocialIcon className="w-5 h-5 inline-block ml-2" />}
+      <div className="flex flex-col gap-y-[4px]">
+        {title && <p className="text-sm text-gray-400">{title}</p>}
+        <div className="flex items-center">
+          {userName && <p className="font-medium text-xl text-white font-gotham">{userName}</p>}
+          {SocialIcon && (
+            <SocialIcon 
+              className="w-5 h-5 inline-block ml-2" 
+              style={{
+                color: SocialIcon === FaWhatsapp ? '#25D366' : 
+                      SocialIcon === FaEnvelope ? '#4A90E2' : 
+                      SocialIcon === FaFacebookMessenger ? '#0084FF' : 
+                      SocialIcon === FaInstagram ? '#E1306C' : 'currentColor'
+              }} 
+            />
+          )}
         </div>
         {contactInfo && (
-          <p className="text-sm">
+          <p className="text-sm text-gray-300">
             {contactInfo?.email} <br /> {contactInfo?.phone}
           </p>
         )}
