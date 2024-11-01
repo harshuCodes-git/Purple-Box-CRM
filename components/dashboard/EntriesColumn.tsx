@@ -19,8 +19,6 @@ const EntriesColumn = ({ tasks, name, icon: ColumnIcon }: Column) => {
   const [filteredTasks, setFilteredTasks] = useState(tasks);
 
   useEffect(() => {
-    console.log("Filter:", filter)
-
     const applyFilter = () => {
       if (filter.type === 'Status') {
         setFilteredTasks(tasks.filter(task => task.status === filter.value));
@@ -31,8 +29,6 @@ const EntriesColumn = ({ tasks, name, icon: ColumnIcon }: Column) => {
       } else {
         setFilteredTasks(tasks);
       }
-
-      console.log(filteredTasks)
     };
     applyFilter();
   }, [filter, tasks]);

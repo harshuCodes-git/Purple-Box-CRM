@@ -4,19 +4,8 @@ import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
 import Sidebar from '@/components/Sidebar'
 import { Input } from '@/components/ui/input'
-import { Bell, ListFilter } from 'lucide-react';
+import { Bell } from 'lucide-react';
 import Dashboard from '@/components/dashboard/Dashboard'
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
-import { Button } from '@/components/ui/button'
 
 const CRMDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
@@ -73,16 +62,6 @@ const CRMDashboard = () => {
                   Churn Rate: <span className='text-status-red'>50%</span>
                 </div>
                 <div className='h-full py-3 w-[1px] bg-white/25'  />
-                <Sheet>
-                  <SheetTrigger className='flex gap-x-4 items-center' asChild>
-                    <Button variant={"default"} className='bg-gradient'>
-                      Filter <ListFilter className='w-4 h-4' />
-                    </Button>
-                  </SheetTrigger>
-                  <SheetContent>
-
-                  </SheetContent>
-                </Sheet>
               </div>
             </div>
 

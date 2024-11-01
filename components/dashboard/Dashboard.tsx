@@ -129,7 +129,6 @@ const Dashboard = () => {
     },
 });
 
-
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const findActiveTask = (id: string) => {
