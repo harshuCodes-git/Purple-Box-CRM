@@ -2,6 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { ChevronsRight } from 'lucide-react';
+import PurpleLogo from '@/assets/Purple-Box Rebrand.png'
+import Image from "next/image";
 
 type sidebarProps = {
   isOpen: boolean;
@@ -18,9 +20,11 @@ const Sidebar = ({ isOpen, setIsOpen } : sidebarProps ) => {
       {/* Header */}
       <div className="flex items-center w-full justify-between">
         <div className="pl-2 justify-between flex items-center gap-x-4">
-          <div className="bg-gradient-to-br from-primary-purple to-primary-pink text-white py-1 px-3 rounded-lg font-bold">
-              P
-          </div>
+          <Image 
+            src={PurpleLogo}
+            alt="Purple Box Logo"
+            className="w-8 h-8"
+          />
           <p className="font-gotham text-white text-[18px]">
             Purple Box
           </p>

@@ -1,17 +1,5 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import React from 'react'
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Purple Box | AI-Powered CRM for E-commerce",
@@ -26,18 +14,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
+const DashboardLayout = ({ 
+  children 
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
   return (
-    <html lang="en">
-      <body
-        className="relative bg-primary-dark font-gotham antialiased"
-      >
-        {children}
-      </body>
-    </html>
-  );
+    <div>{children}</div>
+  )
 }
+
+export default DashboardLayout
