@@ -16,6 +16,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { Button } from '@/components/ui/button'
 
 const CRMDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
@@ -59,16 +60,7 @@ const CRMDashboard = () => {
 
             {/* Statistics */}
             <div className='#CB6CE6 pb-[1px] w-full bg-gradient rounded-t-xl text-[14px]'>
-              <div className='w-full pl-8 pr-32 pb-2 pt-3 bg-[#0A0A0A] rounded-t-xl flex items-center justify-between text-white font-agrandir'>
-                <Sheet>
-                  <SheetTrigger className='flex gap-x-4 items-center'>
-                    Filter <ListFilter className='w-4 h-4' />
-                  </SheetTrigger>
-                  <SheetContent>
-
-                  </SheetContent>
-                </Sheet>
-                <div className='h-full py-3 w-[1px] bg-white/25'  />
+              <div className='w-full pl-8 pr-32 pb-1 pt-2 bg-[#0A0A0A] rounded-t-xl flex items-center justify-between text-white font-agrandir'>
                 <div>
                   Customer Acquisition Rate: <span className='text-status-green'>80%</span>
                 </div>
@@ -80,6 +72,17 @@ const CRMDashboard = () => {
                 <div>
                   Churn Rate: <span className='text-status-red'>50%</span>
                 </div>
+                <div className='h-full py-3 w-[1px] bg-white/25'  />
+                <Sheet>
+                  <SheetTrigger className='flex gap-x-4 items-center' asChild>
+                    <Button variant={"default"} className='bg-gradient'>
+                      Filter <ListFilter className='w-4 h-4' />
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent>
+
+                  </SheetContent>
+                </Sheet>
               </div>
             </div>
 

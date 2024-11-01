@@ -10,62 +10,125 @@ import { Users } from 'lucide-react';
 import { Handshake } from 'lucide-react';
 import { Box } from 'lucide-react';
 import { Instagram } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { Mails } from 'lucide-react';
 import { MessageCircle } from 'lucide-react';
 
 const Dashboard = () => {
   const [columns, setColumns] = useState<Record<string, Column>>({
     column1: {
-      name: "Customer Support",
-      icon: Users,
-      tasks: [
-        { id: '11', title: "Placeholder (Do not move)" },
-        {
-          id: '1',
-          userName: "John Doe",
-          social: MessageCircle,  
-          contactInfo: { email: "john.doe@example.com", phone: "123-456-7890" },
-          interactionHistory: ["Initial contact", "Follow-up call"],
-          status: "Closed",
-          notes: "Not happy in product X",
-          urgency: "High"
-        },
-      ],
+        name: "Customer Support",
+        icon: Users,
+        tasks: [
+            { id: '11', title: "Placeholder (Do not move)" },
+            {
+                id: '1',
+                userName: "John Doe",
+                social: MessageCircle,
+                contactInfo: { email: "john.doe@example.com", phone: "123-456-7890" },
+                interactionHistory: ["Initial contact", "Follow-up call"],
+                status: "Closed",
+                notes: "Not happy with product X",
+                urgency: "High"
+            },
+            {
+                id: '12',
+                userName: "Alice Brown",
+                social: Phone,
+                contactInfo: { email: "alice.brown@example.com", phone: "234-567-8901" },
+                interactionHistory: ["Complaint received"],
+                status: "Open",
+                notes: "Issue with product delivery",
+                urgency: "High"
+            },
+            {
+                id: '13',
+                userName: "Charlie Green",
+                social: MessageCircle,
+                contactInfo: { email: "charlie.green@example.com", phone: "345-678-9012" },
+                interactionHistory: ["Billing question"],
+                status: "Closed",
+                notes: "Resolved billing issue",
+                urgency: "Low"
+            },
+        ],
     },
     column2: {
-      name: "Customer Acquisition",
-      icon: Handshake,
-      tasks: [
-        { id: '20', title: "Placeholder (Do not move)" },
-        {
-          id: '2',
-          userName: "Jane Smith",
-          social: Mails,
-          contactInfo: { email: "jane.smith@example.com", phone: "987-654-3210" },
-          interactionHistory: ["Exploratory meeting"],
-          status: "Closed",
-          notes: "Prefers competitor's product",
-        },
-      ],
+        name: "Customer Acquisition",
+        icon: Handshake,
+        tasks: [
+            { id: '20', title: "Placeholder (Do not move)" },
+            {
+                id: '2',
+                userName: "Jane Smith",
+                social: Mails,
+                contactInfo: { email: "jane.smith@example.com", phone: "987-654-3210" },
+                interactionHistory: ["Exploratory meeting"],
+                status: "Closed",
+                notes: "Prefers competitor's product",
+                urgency: "Low"
+            },
+            {
+                id: '21',
+                userName: "Liam Davis",
+                social: Phone,
+                contactInfo: { email: "liam.davis@example.com", phone: "456-789-0123" },
+                interactionHistory: ["Introductory call", "Follow-up email"],
+                status: "Active",
+                notes: "Interested in demo",
+                urgency: "Medium"
+            },
+            {
+                id: '22',
+                userName: "Emily White",
+                social: MessageCircle,
+                contactInfo: { email: "emily.white@example.com", phone: "567-890-1234" },
+                interactionHistory: ["Initial interest form"],
+                status: "Open",
+                notes: "Awaiting product details",
+                urgency: "High"
+            },
+        ],
     },
     column3: {
-      name: "Other",
-      icon: Box,
-      tasks: [
-        { id: '30', title: "Placeholder (Do not move)" },
-        {
-          id: '3',
-          userName: "Michael Johnson",
-          social: MessageCircle,
-          contactInfo: { email: "michael.johnson@example.com", phone: "555-123-4567" },
-          interactionHistory: ["Demo session", "Positive feedback"],
-          status: "Active",
-          notes: "Scheduled follow-up",
-          urgency: "Mid"
-        },
-      ],
+        name: "Other",
+        icon: Box,
+        tasks: [
+            { id: '30', title: "Placeholder (Do not move)" },
+            {
+                id: '3',
+                userName: "Michael Johnson",
+                social: MessageCircle,
+                contactInfo: { email: "michael.johnson@example.com", phone: "555-123-4567" },
+                interactionHistory: ["Demo session", "Positive feedback"],
+                status: "Active",
+                notes: "Scheduled follow-up",
+                urgency: "Mid"
+            },
+            {
+                id: '31',
+                userName: "Sarah Lee",
+                social: Phone,
+                contactInfo: { email: "sarah.lee@example.com", phone: "678-901-2345" },
+                interactionHistory: ["Inquiry about warranty"],
+                status: "Closed",
+                notes: "Warranty information provided",
+                urgency: "Low"
+            },
+            {
+                id: '32',
+                userName: "David Miller",
+                social: Mails,
+                contactInfo: { email: "david.miller@example.com", phone: "789-012-3456" },
+                interactionHistory: ["General feedback"],
+                status: "Open",
+                notes: "Likes product, suggested improvements",
+                urgency: "Low"
+            },
+        ],
     },
-  });
+});
+
 
   const [activeId, setActiveId] = useState<string | null>(null);
 

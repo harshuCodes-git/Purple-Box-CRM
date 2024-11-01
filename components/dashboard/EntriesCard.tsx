@@ -3,7 +3,7 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Task } from '@/lib/types';
-import { SendHorizontal } from 'lucide-react';
+import { CheckCircle, SendHorizontal } from 'lucide-react';
 import { EllipsisVertical } from 'lucide-react';
 import {
   HoverCard,
@@ -90,6 +90,13 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
             urgency === "Mid" && (
               <div className='text-yellow-500 border-2 border-yellow-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1'>
                 Mid Urgency <CircleAlert className='h-4 w-4' />
+              </div>
+            )
+          }
+          {
+            urgency === "Low" && (
+              <div className='text-green-500 border-2 border-green-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1'>
+                Low Urgency <CheckCircle className='h-4 w-4' />
               </div>
             )
           }
