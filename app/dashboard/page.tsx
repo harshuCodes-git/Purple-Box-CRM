@@ -11,7 +11,7 @@ const CRMDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
 
   return (
-    <>
+    <div className='h-screen'>
       <Sidebar 
         isOpen={isSidebarOpen}
         setIsOpen={setIsSidebarOpen}
@@ -72,13 +72,13 @@ const CRMDashboard = () => {
               </div>
             </div>
             {/* Customer Relationship Manager */}
-            <div className='p-4 w-full overflow-hidden'>
+            <div className='p-4 w-full h-full overflow-hidden'>
               <Dashboard />
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

@@ -36,7 +36,7 @@ const EntriesColumn = ({ tasks, name, icon: ColumnIcon }: Column) => {
   }, [filter, tasks]);
 
   return (
-    <div className="bg-[#0B0B0F] backdrop-blur-sm rounded-xl p-4 shadow-sm relative h-[525px] w-full overflow-hidden text-white">
+    <div className="bg-[#0B0B0F] backdrop-blur-sm rounded-xl p-4 shadow-sm relative h-full w-full overflow-hidden text-white">
       {/* Column Header */}
       <div className="font-medium text-start w-full pb-4 flex items-center justify-between text-sm">
         {/* Column Title */}
