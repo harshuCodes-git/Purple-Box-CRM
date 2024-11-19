@@ -17,7 +17,7 @@ const CRMDashboard = () => {
       <div className='p-4 h-screen font-gotham'>
         <div 
           className={cn(
-            'relative transition-all duration-500 w-auto h-full rounded-xl p-[1px] ml-[70px] bg-gradient ml-[325px]'
+            'relative transition-all duration-500 w-auto h-full rounded-xl p-[1px] bg-gradient ml-[325px]'
           )}
         >
           <div className='bg-[#0A0A0A] relative w-full h-full inset-0 rounded-xl flex flex-col items-center'> 
