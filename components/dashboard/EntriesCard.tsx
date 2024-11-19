@@ -1,19 +1,26 @@
 'use client';
 
+// Library Import
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+
+// Types Import
 import { Task } from '@/lib/types';
-import { CheckCircle, SendHorizontal } from 'lucide-react';
-import { EllipsisVertical } from 'lucide-react';
+
+// Icons Import
+import { CheckCircle, SendHorizontal, TriangleAlert, CircleAlert  } from 'lucide-react';
+import { FaWhatsapp, FaEnvelope, FaFacebookMessenger, FaInstagram } from 'react-icons/fa';
+
+// Components Import
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from '@/components/ui/hover-card';
 import { Button } from '../ui/button';
-import { TriangleAlert } from 'lucide-react';
-import { CircleAlert } from 'lucide-react';
-import { FaWhatsapp, FaEnvelope, FaFacebookMessenger, FaInstagram } from 'react-icons/fa';
+
+// Types Import
+import { SocialPlatform } from '@/lib/types';
 
 const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, status, notes, social: SocialIcon, urgency, subcategory, timestamp }: Task) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
@@ -40,24 +47,20 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
           status === 'Active' ? 'bg-blue-500/10 border-blue-200' : 'bg-gray-500 border-gray-500'
         }`}
       >
-        {status && <p className="text-[13px]">Status: {status}</p>}
+        <p className="text-[13px]">Status: {status}</p>
       </div>
+
       {/* Card Content */}
       <div className="flex flex-col gap-y-[4px]">
-        {title && <p className="text-sm text-gray-400">{title}</p>}
+        <p className="text-sm text-gray-400">{title}</p>
         <div className="flex items-center">
-          {userName && <p className="font-medium text-xl text-white font-gotham">{userName}</p>}
-          {SocialIcon && (
-            <SocialIcon 
-              className="w-5 h-5 inline-block ml-2" 
-              style={{
-                color: SocialIcon === FaWhatsapp ? '#25D366' : 
-                      SocialIcon === FaEnvelope ? '#4A90E2' : 
-                      SocialIcon === FaFacebookMessenger ? '#0084FF' : 
-                      SocialIcon === FaInstagram ? '#E1306C' : 'currentColor'
-              }} 
-            />
-          )}
+          <p className="font-medium text-xl text-white font-gotham">{userName}</p>
+          {SocialIcon === SocialPlatform.WhatsApp && <FaWhatsapp className="w-5 h-5 inline-block ml-2" style={{ color: '#25D366' }} />}
+          {SocialIcon === SocialPlatform.Email && <FaEnvelope className="w-5 h-5 inline-block ml-2" style={{ color: '#4A90E2' }} />}
+          {SocialIcon === SocialPlatform.FacebookMessenger && <FaFacebookMessenger className="w-5 h-5 inline-block ml-2" style={{ color: '#0084FF' }} />}
+          {SocialIcon === SocialPlatform.Instagram && <FaInstagram className="w-5 h-5 inline-block ml-2" style={{ color: '#E1306C' }} />}
+
+
         </div>
         {contactInfo && (
           <p className="text-sm text-gray-300">

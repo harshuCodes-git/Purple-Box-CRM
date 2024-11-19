@@ -1,9 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react';
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+// Library Import
+import { useState, useEffect } from 'react';
+import { 
+  SortableContext, 
+  verticalListSortingStrategy 
+} from '@dnd-kit/sortable';
+
+// Components Import
 import EntriesCard from './EntriesCard';
-import { Column } from '@/lib/types';
 import {
   Select,
   SelectContent,
@@ -13,6 +18,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+
+// Types Import
+import { Column } from '@/lib/types';
+
+// Icons Import
+import { Users } from 'lucide-react';
+import { Handshake } from 'lucide-react';
+import { Box } from 'lucide-react';
+import { Instagram } from 'lucide-react';
+import { Phone } from 'lucide-react';
+import { Mails } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 
 const EntriesColumn = ({ tasks, name, icon: ColumnIcon }: Column) => {
   const [filter, setFilter] = useState({ type: '', value: '' });
@@ -25,7 +42,7 @@ const EntriesColumn = ({ tasks, name, icon: ColumnIcon }: Column) => {
       } else if (filter.type === 'Urgency') {
         setFilteredTasks(tasks.filter(task => task.urgency === filter.value));
       } else if (filter.type === 'Interaction') {
-        setFilteredTasks(tasks.filter(task => task.interactionHistory?.includes(filter.value)));
+        setFilteredTasks(tasks.filter(task => task.interactionHistory.includes(filter.value)));
       } else if (filter.type === 'Subcategory') {
         setFilteredTasks(tasks.filter(task => task.subcategory === filter.value));
       } else {
@@ -37,13 +54,16 @@ const EntriesColumn = ({ tasks, name, icon: ColumnIcon }: Column) => {
 
   return (
     <div className="bg-[#0B0B0F] backdrop-blur-sm rounded-xl p-4 shadow-sm relative h-full w-full overflow-hidden text-white">
-      {/* Column Header */}
       <div className="font-medium text-start w-full pb-4 flex items-center justify-between text-sm">
+
         {/* Column Title */}
         <div className='flex items-center gap-x-2'>
-          {ColumnIcon && <ColumnIcon className="w-4 h-4 mr-2" />} 
+          {ColumnIcon === 'Users' && <Users size={20} />}
+          {ColumnIcon === 'Handshake' && <Handshake size={20} />}
+          {ColumnIcon === 'Box' && <Box size={20} />}
           <h5>{name}</h5>
         </div>
+
         {/* Column Filtering */}
         <Select onValueChange={(value) => {
           const [type, val] = value.split(':');
@@ -86,6 +106,7 @@ const EntriesColumn = ({ tasks, name, icon: ColumnIcon }: Column) => {
           </SelectContent>
         </Select>
       </div>
+
       {/* Card Display */}
       <div className="overflow-y-auto scrollbar-hide flex items-center justify-start flex-col h-full no-scrollbar">
         <SortableContext items={tasks} strategy={verticalListSortingStrategy}>

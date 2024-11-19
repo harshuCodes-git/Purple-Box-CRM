@@ -1,22 +1,31 @@
 'use client'
 
+// Library Import
 import React, { useState } from 'react';
-import { closestCorners, DndContext, DragOverlay, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { 
+  closestCorners, 
+  DndContext, 
+  DragOverlay, 
+  KeyboardSensor, 
+  PointerSensor, 
+  TouchSensor, 
+  useSensor, 
+  useSensors 
+} from '@dnd-kit/core';
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+
+// Component Import
 import EntriesColumn from './EntriesColumn';
 import EntriesCard from './EntriesCard';
-import { Column } from '@/lib/types';
-import { Users } from 'lucide-react';
-import { Handshake } from 'lucide-react';
-import { Box } from 'lucide-react';
-import { Instagram } from 'lucide-react';
-import { Phone } from 'lucide-react';
-import { Mails } from 'lucide-react';
-import { MessageCircle } from 'lucide-react';
+
+// Constants Import
 import { columnsData } from '@/lib/constants';
 
+// Types Import
+import { Column } from '@/lib/types';
+
 const Dashboard = () => {
-  const [columns, setColumns] = useState<Record<string, Column>>(columnsData);   
+  const [columns, setColumns] = useState<Column[]>(columnsData);   
 
   const [activeId, setActiveId] = useState<string | null>(null);
 
@@ -90,13 +99,11 @@ const Dashboard = () => {
   return (
     <div className='h-full'>
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
-        {/* Display Column */}
         <div className='flex gap-x-4 overflow-x-scroll overflow-y-hidden h-full scroll-container'>
           {Object.entries(columns).map(([columnId, { name, icon, tasks }]) => (
             <EntriesColumn key={columnId} name={name} icon={icon} tasks={tasks} />
           ))}
         </div>
-        {/* On Drag Display Card */}
         <DragOverlay>
           {activeTask ? (
             <EntriesCard 
