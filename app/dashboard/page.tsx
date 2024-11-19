@@ -1,26 +1,23 @@
-'use client'
-
-import React, { useState } from 'react'
+// Library Import
+import React from 'react'
 import { cn } from '@/lib/utils'
+
+// Components Import
 import Sidebar from '@/components/Sidebar'
-import { Input } from '@/components/ui/input'
-import { Bell } from 'lucide-react';
 import Dashboard from '@/components/dashboard/Dashboard'
 
-const CRMDashboard = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
+// Icons Import
+import { Bell } from 'lucide-react';
 
+const CRMDashboard = () => {
   return (
     <div className='h-screen'>
-      <Sidebar 
-        isOpen={isSidebarOpen}
-        setIsOpen={setIsSidebarOpen}
-      />
+      {/* Sidebar */}
+      <Sidebar  />
       <div className='p-4 h-screen font-gotham'>
         <div 
           className={cn(
-            'relative transition-all duration-500 w-auto h-full rounded-xl p-[1px] ml-[70px] bg-gradient',
-            isSidebarOpen && 'ml-[325px]'
+            'relative transition-all duration-500 w-auto h-full rounded-xl p-[1px] ml-[70px] bg-gradient ml-[325px]'
           )}
         >
           <div className='bg-[#0A0A0A] relative w-full h-full inset-0 rounded-xl flex flex-col items-center'> 
@@ -32,17 +29,9 @@ const CRMDashboard = () => {
                     Your Customer
                   </span>
                 </p>
-                {/* <div className='flex gap-x-4 items-center'>
-                  <Input 
-                    className='rounded-md h-[25px] border-[1px] placeholder:text-xs placeholder:text-white/50 text-white min-w-[300px] focus:border-[#CB6CE6]'
-                    placeholder='Search customer...'
-                  />
-                  <div className="hover:bg-white/10 hover:text-[#CB6CE6] transition-all p-2 rounded-full flex justify-between items-center cursor-pointer">
-                    <Bell className='w-4 h-4 text-white hover:text-[#CB6CE6]'/>
-                  </div>
-                </div> */}
               </div>
             </div>
+            
             {/* Statistics */}
             <div className='#CB6CE6 pb-[1px] w-full bg-gradient rounded-t-xl text-[14px]'>
               <div className='w-full px-8 pb-1 pt-2 bg-[#0A0A0A] rounded-t-xl flex items-center justify-between text-white font-agrandir'>
@@ -71,7 +60,8 @@ const CRMDashboard = () => {
                 </div>
               </div>
             </div>
-            {/* Customer Relationship Manager */}
+
+            {/* CRM Dashboard */}
             <div className='p-4 w-full h-full overflow-hidden'>
               <Dashboard />
             </div>

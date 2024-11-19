@@ -5,16 +5,11 @@ import { ChevronsRight } from 'lucide-react';
 import PurpleLogo from '@/assets/Purple-Box Rebrand.png'
 import Image from "next/image";
 
-type sidebarProps = {
-  isOpen: boolean;
-  setIsOpen: (param: boolean) => void;
-}
 
-const Sidebar = ({ isOpen, setIsOpen } : sidebarProps ) => {
+const Sidebar = () => {
   return (
     <div className={cn(
-      'absolute w-[320px] left-0 h-screen bg-primary-dark transition-all duration-500 z-20 flex flex-col p-4 border-r-2 border-primary-purple/50',
-      isOpen ? 'translate-x-[0] border-r-2 border-primary-purple/100' : 'translate-x-[-250px]'
+      'absolute w-[320px] left-0 h-screen bg-primary-dark transition-all duration-500 z-20 flex flex-col p-4 translate-x-[0] border-r-2 border-primary-purple/100' 
     )}>
 
       {/* Header */}
@@ -29,11 +24,8 @@ const Sidebar = ({ isOpen, setIsOpen } : sidebarProps ) => {
             Purple Box
           </p>
         </div>
-        <div onClick={() => setIsOpen(!isOpen)} className="hover:bg-white/10 transition-all p-2 rounded-full flex justify-between items-center">
-          <ChevronsRight className={cn(
-            "text-white transition-all duration-500 cursor-pointer",
-            isOpen && 'rotate-180'
-          )} />
+        <div className="hover:bg-white/10 transition-all p-2 rounded-full flex justify-between items-center">
+          <ChevronsRight className='text-white transition-all duration-500 cursor-pointer' />
         </div>
       </div>
 
