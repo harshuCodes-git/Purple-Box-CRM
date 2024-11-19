@@ -55,7 +55,9 @@ const Dashboard = () => {
     if (sourceColumnId === targetColumnId && sourceIndex === targetIndex) return;
 
     setColumns(columns => {
+      // @ts-ignore
       const sourceTasks = [...columns[sourceColumnId].tasks];
+      // @ts-ignore
       const targetTasks = sourceColumnId === targetColumnId ? sourceTasks : [...columns[targetColumnId].tasks];
       // @ts-ignore
       const [movedTask] = sourceTasks.splice(sourceIndex, 1);
@@ -70,8 +72,16 @@ const Dashboard = () => {
 
       return {
         ...columns,
-        [sourceColumnId]: { ...columns[sourceColumnId], tasks: sourceTasks },
-        [targetColumnId]: { ...columns[targetColumnId], tasks: targetTasks }
+        [sourceColumnId]: { 
+          // @ts-ignore
+          ...columns[sourceColumnId],
+          tasks: sourceTasks
+        },
+        [targetColumnId]: { 
+          // @ts-ignore
+          ...columns[targetColumnId], 
+          tasks: targetTasks 
+        }
       };
     });
   };

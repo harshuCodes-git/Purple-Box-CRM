@@ -1,5 +1,3 @@
-import { LucideProps } from 'lucide-react';
-
 export enum SocialPlatform {
   WhatsApp = "WhatsApp",
   Email = "Email",

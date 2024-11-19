@@ -50,7 +50,7 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
         <p className="text-[13px]">Status: {status}</p>
       </div>
 
-      {/* Card Content */}
+      {/* Card Header */}
       <div className="flex flex-col gap-y-[4px]">
         <p className="text-sm text-gray-400">{title}</p>
         <div className="flex items-center">
@@ -59,16 +59,14 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
           {SocialIcon === SocialPlatform.Email && <FaEnvelope className="w-5 h-5 inline-block ml-2" style={{ color: '#4A90E2' }} />}
           {SocialIcon === SocialPlatform.FacebookMessenger && <FaFacebookMessenger className="w-5 h-5 inline-block ml-2" style={{ color: '#0084FF' }} />}
           {SocialIcon === SocialPlatform.Instagram && <FaInstagram className="w-5 h-5 inline-block ml-2" style={{ color: '#E1306C' }} />}
-
-
         </div>
-        {contactInfo && (
-          <p className="text-sm text-gray-300">
-            {contactInfo?.email} <br /> {contactInfo?.phone}
-          </p>
-        )}
+        <p className="text-sm text-gray-300">
+          {contactInfo.email} <br /> {contactInfo.phone}
+        </p>
       </div>
-      {interactionHistory && interactionHistory.length > 0 && (
+
+      {/* Interaction History */}
+      {interactionHistory.length > 0 && (
         <div className="flex flex-wrap gap-2 mt-4">
           {interactionHistory.slice(0, 3).map((interaction, index) => (
             <span
@@ -96,14 +94,13 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
           )}
         </div>
       )}
+
       {/* Status */}
       <div className="absolute bottom-4 right-4 flex items-center justify-center gap-x-4">
-        {/* Sub Category */}
-        {subcategory && (
-          <p className="text-xs text-white/80">{subcategory}</p>
-        )}
+        <p className="text-xs text-white/80">{subcategory}</p>
         <div className={`${statusColor} h-2 w-2 rounded-full`} />
       </div>
+
       {/* Urgency */}
       <div className='flex flex-col gap-y-2 items-start justify-center gap-x-2 mt-4'>
         <Button className='text-xs font-gotham rounded-full bg-transparent flex items-center gap-x-2 hover:gap-x-4 transition-all border-white text-white hover:bg-purple-100/10 hover:text-white font-light' variant={"outline"} size={"sm"}>
@@ -127,16 +124,17 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
           )}
         </div>
       </div>
+
       {/* Notes */}
       <div className='text-white mt-4'>
-        {notes && <p className="text-[13px]">Notes: {notes}</p>}
+        <p className="text-[13px]">Notes: {notes}</p>
       </div>
+
       {/* Timestamp */}
-      {timestamp && (
-        <p className="text-xs text-white/75 mt-4">
-          {new Date(timestamp).toLocaleDateString()}
-        </p>
-      )}
+      <p className="text-xs text-white/75 mt-4">
+        {new Date(timestamp).toLocaleDateString()}
+      </p>
+     
     </div>
   );
 };

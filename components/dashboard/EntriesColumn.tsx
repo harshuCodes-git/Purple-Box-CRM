@@ -26,10 +26,6 @@ import { Column } from '@/lib/types';
 import { Users } from 'lucide-react';
 import { Handshake } from 'lucide-react';
 import { Box } from 'lucide-react';
-import { Instagram } from 'lucide-react';
-import { Phone } from 'lucide-react';
-import { Mails } from 'lucide-react';
-import { MessageCircle } from 'lucide-react';
 
 const EntriesColumn = ({ tasks, name, icon: ColumnIcon }: Column) => {
   const [filter, setFilter] = useState({ type: '', value: '' });
