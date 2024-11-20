@@ -47,7 +47,7 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
           status === 'Active' ? 'bg-blue-500/10 border-blue-200' : 'bg-gray-500 border-gray-500'
         }`}
       >
-        <p className="text-[13px]">Status: {status}</p>
+        <p className="text-[13px]">{status}</p>
       </div>
 
       {/* Card Header */}
@@ -127,7 +127,7 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
 
       {/* Notes */}
       <div className='text-white mt-4'>
-        <p className="text-[13px]">Notes: {notes}</p>
+        <p className="text-[13px]">Notes: <br /> {notes}</p>
       </div>
 
       {/* Timestamp */}

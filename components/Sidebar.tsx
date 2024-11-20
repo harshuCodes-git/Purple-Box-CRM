@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from "@/lib/utils";
-import { ChevronsRight } from 'lucide-react';
+// import { ChevronsRight } from 'lucide-react';
 import PurpleLogo from '@/assets/Purple-Box Rebrand.png'
 import Image from "next/image";
 
@@ -24,9 +24,9 @@ const Sidebar = () => {
             Purple Box
           </p>
         </div>
-        <div className="hover:bg-white/10 transition-all p-2 rounded-full flex justify-between items-center">
+        {/* <div className="hover:bg-white/10 transition-all p-2 rounded-full flex justify-between items-center">
           <ChevronsRight className='text-white transition-all duration-500 cursor-pointer' />
-        </div>
+        </div> */}
       </div>
 
       {/* Sidebar Content */}
