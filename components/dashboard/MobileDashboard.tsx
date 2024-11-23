@@ -24,7 +24,11 @@ import { columnsData } from '@/lib/constants';
 // Types Import
 import { Column } from '@/lib/types';
 
-const Dashboard = () => {
+const MobileDashboard = ({
+  selectedColumn,
+}: {
+  selectedColumn: "Customer Support" | "Customer Acquisition" | "Others" | null;
+}) => {
   const [columns, setColumns] = useState<Column[]>(columnsData);   
 
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -107,12 +111,16 @@ const Dashboard = () => {
   const activeTask = activeId ? findActiveTask(activeId) : null;
 
   return (
-    <div className='hidden lg:block h-full'>
+    <div className='block lg:hidden h-full'>
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
-        <div className='flex gap-x-4 overflow-x-scroll overflow-y-hidden h-full scroll-container'>
-          {Object.entries(columns).map(([columnId, { name, icon, tasks }]) => (
-            <EntriesColumn key={columnId} name={name} icon={icon} tasks={tasks} />
-          ))}
+        <div className='gap-x-4 overflow-x-scroll overflow-y-hidden h-full scroll-container'>
+          {selectedColumn && (
+            <EntriesColumn
+              name={columnsData.find((col) => col.name === selectedColumn)?.name || ""}
+              icon={columnsData.find((col) => col.name === selectedColumn)?.icon || ""}
+              tasks={columnsData.find((col) => col.name === selectedColumn)?.tasks || []}
+            />
+          )}
         </div>
         <DragOverlay>
           {activeTask ? (
@@ -135,7 +143,7 @@ const Dashboard = () => {
         </DragOverlay>
       </DndContext>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default MobileDashboard
