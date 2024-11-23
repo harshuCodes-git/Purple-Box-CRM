@@ -9,7 +9,7 @@ import Image from "next/image";
 const Sidebar = () => {
   return (
     <div className={cn(
-      'absolute w-[320px] left-0 h-screen bg-primary-dark transition-all duration-500 z-20 flex flex-col p-4 translate-x-[0] border-r-2 border-primary-purple/100' 
+      'hidden absolute w-[320px] left-0 h-screen bg-primary-dark transition-all duration-500 z-20 lg:flex flex-col p-4 translate-x-[0] border-r-2 border-primary-purple/100' 
     )}>
 
       {/* Header */}
