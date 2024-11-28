@@ -1,7 +1,7 @@
 "use client";
 
 // Library Import
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import {
   closestCorners,
   DndContext,
@@ -23,11 +23,18 @@ import { columnsData } from "@/lib/constants";
 
 // Types Import
 import { Column } from "@/lib/types";
+import axios from "axios";
 
 const Dashboard = ({ data }: { data: Column[] }) => {
   const [columns, setColumns] = useState<Column[]>(data);
 
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [isLoading, startTransition] = useTransition();
+
+  const backendUrl = process.env.BACKEND_URL || "http://localhost:8000";
+  const auth =
+    process.env.AUTHORIZATION ||
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZGIzYjJlYy02NWZkLTQ5ZjctOWY4ZS0yOWNhOTk5YTkyNzkiLCJlbWFpbCI6ImNvbXAxQGdtYWlsLmNvbSIsImlhdCI6MTczMjc2MzcyMywiZXhwIjoxNzMyODUwMTIzfQ.EYasunW410LP2vte1PZNkdO_sLx4peyNhi2A_FRc-HM";
 
   const findActiveTask = (id: string) => {
     for (const column of Object.values(columns)) {
@@ -65,6 +72,7 @@ const Dashboard = ({ data }: { data: Column[] }) => {
           : [...columns[targetColumnId].tasks];
       // @ts-ignore
       const [movedTask] = sourceTasks.splice(sourceIndex, 1);
+      movedTask.title = columns[targetColumnId].name;
 
       if (sourceColumnId === targetColumnId) {
         // @ts-ignore
@@ -73,6 +81,31 @@ const Dashboard = ({ data }: { data: Column[] }) => {
         // @ts-ignore
         targetTasks.splice(targetIndex, 0, movedTask);
       }
+
+      // Backend API call to update the task
+      const fromCategory = columns[sourceColumnId].name;
+      const toCategory = columns[targetColumnId].name;
+
+      console.log(
+        `Moved task with id ${active.id} from ${fromCategory} to ${toCategory}`
+      );
+
+      // startTransition(() => {
+      const res = axios
+        .put(
+          backendUrl + "/communication-entity/category/" + active.id,
+          { from: fromCategory, to: toCategory },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: auth,
+            },
+          }
+        )
+        .catch((err) => {
+          console.error(err);
+        });
+      // });
 
       return {
         ...columns,

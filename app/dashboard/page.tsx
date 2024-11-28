@@ -16,20 +16,20 @@ const CRMDashboard = async () => {
   const backendUrl = "http://localhost:8000";
   const customerSupport = await axios.get(backendUrl + "/customer-support", {
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZGIzYjJlYy02NWZkLTQ5ZjctOWY4ZS0yOWNhOTk5YTkyNzkiLCJlbWFpbCI6ImNvbXAxQGdtYWlsLmNvbSIsImlhdCI6MTczMjcyNTc3MywiZXhwIjoxNzMyODEyMTczfQ.jZQlkRHhFFOWSVSr2I-jE5nT00aP4sg5nZioQeLvSfg`,
+      Authorization: process.env.AUTHORIZATION,
     },
   });
   const customerAcquisition = await axios.get(
     backendUrl + "/customer-acquisition",
     {
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZGIzYjJlYy02NWZkLTQ5ZjctOWY4ZS0yOWNhOTk5YTkyNzkiLCJlbWFpbCI6ImNvbXAxQGdtYWlsLmNvbSIsImlhdCI6MTczMjcyNTc3MywiZXhwIjoxNzMyODEyMTczfQ.jZQlkRHhFFOWSVSr2I-jE5nT00aP4sg5nZioQeLvSfg`,
+        Authorization: process.env.AUTHORIZATION,
       },
     }
   );
   const other = await axios.get(backendUrl + "/other", {
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZGIzYjJlYy02NWZkLTQ5ZjctOWY4ZS0yOWNhOTk5YTkyNzkiLCJlbWFpbCI6ImNvbXAxQGdtYWlsLmNvbSIsImlhdCI6MTczMjcyNTc3MywiZXhwIjoxNzMyODEyMTczfQ.jZQlkRHhFFOWSVSr2I-jE5nT00aP4sg5nZioQeLvSfg`,
+      Authorization: process.env.AUTHORIZATION,
     },
   });
 
@@ -107,7 +107,7 @@ const CRMDashboard = async () => {
       tasks: parsedCustomerAcquisitionData ?? [],
     },
     {
-      name: "Others",
+      name: "Other",
       icon: "Box",
       tasks: parsedOtherData ?? [],
     },
