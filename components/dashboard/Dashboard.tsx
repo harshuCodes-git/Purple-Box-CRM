@@ -1,7 +1,7 @@
 "use client";
 
 // Library Import
-import React, { useState, useTransition } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import {
   closestCorners,
   DndContext,
@@ -24,6 +24,7 @@ import { columnsData } from "@/lib/constants";
 // Types Import
 import { Column } from "@/lib/types";
 import axios from "axios";
+import useSocket from "@/hooks/use-socket";
 
 const Dashboard = ({ data }: { data: Column[] }) => {
   const [columns, setColumns] = useState<Column[]>(data);
@@ -31,10 +32,111 @@ const Dashboard = ({ data }: { data: Column[] }) => {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [isLoading, startTransition] = useTransition();
 
+  const socket = useSocket("http://localhost:8000");
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on("newCustomerSupportEntity", (message) => {
+      console.log("New customer support", message);
+      const newTask = {
+        id: message.id,
+        title: message.title,
+        social: message.platform ?? "WhatsApp",
+        userName: message.userName,
+        contactInfo: {
+          email: message.contactInfo.email,
+          phone: message.contactInfo.whatsapp_number,
+        },
+        interactionHistory: [],
+        status: message.status,
+        notes: message.notes,
+        urgency: message.urgency,
+        subcategory: message.subcategory,
+        timestamp: message.timestamp,
+      };
+
+      setColumns((prev) => {
+        const newColumns = [...prev];
+        const temp = {
+          ...newColumns[0],
+          tasks: [...newColumns[0].tasks, newTask],
+        };
+        newColumns[0] = temp;
+        return newColumns;
+      });
+    });
+
+    socket.on("newCustomerAcquisitionEntity", (message) => {
+      console.log("New customer acquisition", message);
+      const newTask = {
+        id: message.id,
+        title: message.title,
+        social: message.platform ?? "WhatsApp",
+        userName: message.userName,
+        contactInfo: {
+          email: message.contactInfo.email,
+          phone: message.contactInfo.whatsapp_number,
+        },
+        interactionHistory: [],
+        status: message.status,
+        notes: message.notes,
+        urgency: message.urgency,
+        subcategory: message.score,
+        timestamp: message.timestamp,
+      };
+
+      setColumns((prev) => {
+        const newColumns = [...prev];
+        const temp = {
+          ...newColumns[1],
+          tasks: [...newColumns[1].tasks, newTask],
+        };
+        newColumns[1] = temp;
+        return newColumns;
+      });
+    });
+
+    socket.on("newOtherEntity", (message) => {
+      console.log("New other", message);
+      const newTask = {
+        id: message.id,
+        title: message.title,
+        social: message.platform ?? "WhatsApp",
+        userName: message.userName,
+        contactInfo: {
+          email: message.contactInfo.email,
+          phone: message.contactInfo.whatsapp_number,
+        },
+        interactionHistory: [],
+        status: message.status,
+        notes: message.notes,
+        urgency: message.urgency,
+        subcategory: message.subcategory,
+        timestamp: message.timestamp,
+      };
+
+      setColumns((prev) => {
+        const newColumns = [...prev];
+        const temp = {
+          ...newColumns[2],
+          tasks: [...newColumns[2].tasks, newTask],
+        };
+        newColumns[2] = temp;
+        return newColumns;
+      });
+    });
+
+    console.log("Communication entity socket connected");
+    console.log("Communication entity socket", socket);
+    return () => {
+      socket.off("newEntity");
+    };
+  }, [socket]);
+
   const backendUrl = process.env.BACKEND_URL || "http://localhost:8000";
   const auth =
     process.env.AUTHORIZATION ||
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZGIzYjJlYy02NWZkLTQ5ZjctOWY4ZS0yOWNhOTk5YTkyNzkiLCJlbWFpbCI6ImNvbXAxQGdtYWlsLmNvbSIsImlhdCI6MTczMjc2MzcyMywiZXhwIjoxNzMyODUwMTIzfQ.EYasunW410LP2vte1PZNkdO_sLx4peyNhi2A_FRc-HM";
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwZGIzYjJlYy02NWZkLTQ5ZjctOWY4ZS0yOWNhOTk5YTkyNzkiLCJlbWFpbCI6ImNvbXAxQGdtYWlsLmNvbSIsImlhdCI6MTczMzQ2NjA5OCwiZXhwIjoxNzMzNTUyNDk4fQ.ig1R_4PS3kM653Q0ulHM1yrG5ABHYI0TGmDZAxdhGf0";
 
   const findActiveTask = (id: string) => {
     for (const column of Object.values(columns)) {
