@@ -19,7 +19,6 @@ const CRMDashboard = () => {
     "Customer Support" | "Customer Acquisition" | "Others" | null
   >("Customer Support");
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
   const supabase = getSupabaseFrontendClient();
   const axiosAuth = useAxiosAuth();
 
