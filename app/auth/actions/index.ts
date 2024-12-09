@@ -20,9 +20,11 @@ export async function singInWithEmailAndPassword(data: {
 
     return result;
   } catch (error) {
-    console.error("Unexpected Sign In Error:", error.message);
+    console.error(
+      "Unexpected Sign In Error:",
+      error instanceof Error ? error.message : error
+    );
     throw new Error("An unexpected error occurred during sign in.");
-    return error.message;
   }
 }
 
