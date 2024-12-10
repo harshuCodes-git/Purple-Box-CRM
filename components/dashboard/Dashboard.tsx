@@ -269,6 +269,10 @@ const Dashboard = () => {
 
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
+    const activeElement = document.querySelector(`[data-id="${active.id}"]`);
+    if (activeElement) {
+      activeElement.classList.remove("opacity-30");
+    }
     setActiveId(null);
 
     if (!over) {
