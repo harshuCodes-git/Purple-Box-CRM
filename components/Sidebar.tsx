@@ -46,7 +46,7 @@ const Sidebar = () => {
 
       {/* Sidebar Content */}
       <div className="flex flex-col h-full justify-between">
-        <div className="flex flex-col gap-y-4 p-4">
+        <div className="flex flex-col gap-y-4 px-5 py-8">
           {sidebarItems.map((item) => (
             <Link
               key={item.name}
