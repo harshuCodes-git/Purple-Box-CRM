@@ -351,22 +351,26 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="hidden lg:block h-full">
+    <div className="h-full w-full overflow-x-auto">
       <DndContext
         sensors={sensors}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         collisionDetection={closestCorners}
       >
-        <div className="flex gap-x-4 overflow-x-scroll overflow-y-hidden h-full scroll-container">
+        <div className="flex gap-x-4 p-4 min-w-max">
           {Object.entries(columns).map(([columnId, column]) => (
-            <EntriesColumn
-              key={columnId}
-              id={columnId}
-              name={column.name}
-              icon={column.icon}
-              tasks={column.tasks}
-            />
+            <div className="w-[350px] md:w-full">
+              {" "}
+              {/* Fixed width for each column */}
+              <EntriesColumn
+                key={columnId}
+                id={columnId}
+                name={column.name}
+                icon={column.icon}
+                tasks={column.tasks}
+              />
+            </div>
           ))}
         </div>
         <DragOverlay>

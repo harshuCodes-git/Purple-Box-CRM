@@ -130,7 +130,7 @@ const EntriesColumn = ({ id, tasks, name, icon: ColumnIcon }: Column) => {
         data-type="column"
         data-id={id}
       >
-        {tasks.map((task) => (
+        {filteredTasks.map((task) => (
           <EntriesCard key={task.id} {...task} />
         ))}
       </div>

@@ -30,7 +30,7 @@ const CRMDashboard = () => {
             <Statistics />
             <div className="p-2 w-full h-full overflow-hidden">
               <Dashboard />
-              <MobileDashboard selectedColumn={selectedColumn} />
+              {/* <MobileDashboard selectedColumn={selectedColumn} /> */}
             </div>
           </div>
         </div>

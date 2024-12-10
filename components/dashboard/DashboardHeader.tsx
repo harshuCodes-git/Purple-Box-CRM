@@ -7,7 +7,9 @@ import ColumnSelect from "./ColumnSelect";
 const DashboardHeader = ({
   setColumn,
 }: {
-  setColumn: (column: "Customer Support" | "Customer Acquisition" | "Others") => void;
+  setColumn: (
+    column: "Customer Support" | "Customer Acquisition" | "Others"
+  ) => void;
 }) => {
   return (
     <div className="#CB6CE6 pb-[1px] w-full bg-gradient rounded-t-xl">
@@ -17,9 +19,6 @@ const DashboardHeader = ({
             Your Customer
           </span>
         </p>
-        <div className="lg:hidden">
-          <ColumnSelect setColumn={setColumn} />
-        </div>
       </div>
     </div>
   );
