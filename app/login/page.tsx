@@ -36,11 +36,14 @@ export default function LoginPage() {
       password: "",
     },
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data: FormValues) => {
     try {
+      setIsLoading(true);
       const authData = await singInWithEmailAndPassword(data);
       console.log("Logged in successfully:", authData);
+      router.refresh();
       router.push("/dashboard");
     } catch (error: any) {
       console.error("Error logging in:", error.message);
@@ -49,6 +52,8 @@ export default function LoginPage() {
         description: "Invalid email or password.",
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -97,6 +102,7 @@ export default function LoginPage() {
 
             <Button
               type="submit"
+              loading={isLoading}
               className="w-full bg-primary-purple hover:bg-primary-pink text-white"
             >
               Log In

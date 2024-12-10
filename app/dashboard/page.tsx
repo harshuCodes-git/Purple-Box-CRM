@@ -1,7 +1,7 @@
 "use client";
 
 // Library Import
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 
 // Components Import
@@ -10,21 +10,12 @@ import Dashboard from "@/components/dashboard/Dashboard";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import Statistics from "@/components/dashboard/Statistics";
 import MobileDashboard from "@/components/dashboard/MobileDashboard";
-import { useRouter } from "next/navigation";
-import { getSupabaseFrontendClient } from "@/lib/supabase/client";
-import useAxiosAuth from "@/hooks/useAxiosAuth";
 
 const CRMDashboard = () => {
   const [selectedColumn, setSelectedColumn] = useState<
     "Customer Support" | "Customer Acquisition" | "Others" | null
   >("Customer Support");
-  const router = useRouter();
-  const supabase = getSupabaseFrontendClient();
 
-  const logout = async () => {
-    await supabase.auth.signOut();
-    router.push("/login");
-  };
   return (
     <div className="h-screen">
       <Sidebar />
