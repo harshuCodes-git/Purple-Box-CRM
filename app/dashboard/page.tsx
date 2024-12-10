@@ -20,16 +20,6 @@ const CRMDashboard = () => {
   >("Customer Support");
   const router = useRouter();
   const supabase = getSupabaseFrontendClient();
-  const axiosAuth = useAxiosAuth();
-
-  const getProtectedData = async () => {
-    const response = await axiosAuth.get("/protected");
-    console.log("Protected data:", response.data);
-  };
-
-  useEffect(() => {
-    getProtectedData();
-  }, []);
 
   const logout = async () => {
     await supabase.auth.signOut();

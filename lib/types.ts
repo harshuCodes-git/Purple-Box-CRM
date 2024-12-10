@@ -1,8 +1,8 @@
 export enum SocialPlatform {
-  WhatsApp = "WhatsApp",
-  Email = "Email",
-  FacebookMessenger = "Facebook Messenger",
-  Instagram = "Instagram",
+  WhatsApp = "whatsapp",
+  Email = "email",
+  FacebookMessenger = "messenger",
+  Instagram = "instagram",
 }
 
 export type Task = {
@@ -18,11 +18,13 @@ export type Task = {
   status: string;
   notes: string;
   urgency: string;
+  category: string;
   subcategory: string;
   timestamp: string;
 };
 
 export type Column = {
+  id: string;
   name: string;
   icon: string;
   tasks: Task[];

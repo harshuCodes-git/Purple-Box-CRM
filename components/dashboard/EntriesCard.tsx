@@ -1,36 +1,59 @@
-'use client';
+"use client";
 
 // Library Import
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 // Types Import
-import { Task } from '@/lib/types';
+import { Task } from "@/lib/types";
 
 // Icons Import
-import { CheckCircle, SendHorizontal, TriangleAlert, CircleAlert  } from 'lucide-react';
-import { FaWhatsapp, FaEnvelope, FaFacebookMessenger, FaInstagram } from 'react-icons/fa';
+import {
+  CheckCircle,
+  SendHorizontal,
+  TriangleAlert,
+  CircleAlert,
+} from "lucide-react";
+import {
+  FaWhatsapp,
+  FaEnvelope,
+  FaFacebookMessenger,
+  FaInstagram,
+} from "react-icons/fa";
 
 // Components Import
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from '@/components/ui/hover-card';
-import { Button } from '../ui/button';
+} from "@/components/ui/hover-card";
+import { Button } from "../ui/button";
 
 // Types Import
-import { SocialPlatform } from '@/lib/types';
+import { SocialPlatform } from "@/lib/types";
 
-const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, status, notes, social: SocialIcon, urgency, subcategory, timestamp }: Task) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+const EntriesCard = ({
+  id,
+  title,
+  userName,
+  contactInfo,
+  interactionHistory,
+  status,
+  notes,
+  social: SocialIcon,
+  urgency,
+  subcategory,
+  timestamp,
+}: Task) => {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
 
   const style = {
     transition,
     transform: CSS.Transform.toString(transform),
   };
 
-  const statusColor = status === 'Closed' ? 'bg-red-500' : 'bg-green-300';
+  const statusColor = status === "Closed" ? "bg-red-500" : "bg-green-300";
 
   return (
     <div
@@ -42,9 +65,13 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
     >
       <div
         className={`absolute top-4 right-4 rounded-md border-2 px-2 py-1 text-white/75 ${
-          status === 'Open' ? 'bg-green-500/10 border-green-200' :
-          status === 'Closed' ? 'bg-red-500/10 border-red-200' :
-          status === 'Active' ? 'bg-blue-500/10 border-blue-200' : 'bg-gray-500 border-gray-500'
+          status === "Open"
+            ? "bg-green-500/10 border-green-200"
+            : status === "Closed"
+            ? "bg-red-500/10 border-red-200"
+            : status === "Active"
+            ? "bg-blue-500/10 border-blue-200"
+            : "bg-gray-500 border-gray-500"
         }`}
       >
         <p className="text-[13px]">{status}</p>
@@ -54,11 +81,33 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
       <div className="flex flex-col gap-y-[4px]">
         <p className="text-sm text-gray-400">{title}</p>
         <div className="flex items-center">
-          <p className="font-medium text-xl text-white font-gotham">{userName}</p>
-          {SocialIcon === SocialPlatform.WhatsApp && <FaWhatsapp className="w-5 h-5 inline-block ml-2" style={{ color: '#25D366' }} />}
-          {SocialIcon === SocialPlatform.Email && <FaEnvelope className="w-5 h-5 inline-block ml-2" style={{ color: '#4A90E2' }} />}
-          {SocialIcon === SocialPlatform.FacebookMessenger && <FaFacebookMessenger className="w-5 h-5 inline-block ml-2" style={{ color: '#0084FF' }} />}
-          {SocialIcon === SocialPlatform.Instagram && <FaInstagram className="w-5 h-5 inline-block ml-2" style={{ color: '#E1306C' }} />}
+          <p className="font-medium text-xl text-white font-gotham">
+            {userName}
+          </p>
+          {SocialIcon === SocialPlatform.WhatsApp && (
+            <FaWhatsapp
+              className="w-5 h-5 inline-block ml-2"
+              style={{ color: "#25D366" }}
+            />
+          )}
+          {SocialIcon === SocialPlatform.Email && (
+            <FaEnvelope
+              className="w-5 h-5 inline-block ml-2"
+              style={{ color: "#4A90E2" }}
+            />
+          )}
+          {SocialIcon === SocialPlatform.FacebookMessenger && (
+            <FaFacebookMessenger
+              className="w-5 h-5 inline-block ml-2"
+              style={{ color: "#0084FF" }}
+            />
+          )}
+          {SocialIcon === SocialPlatform.Instagram && (
+            <FaInstagram
+              className="w-5 h-5 inline-block ml-2"
+              style={{ color: "#E1306C" }}
+            />
+          )}
         </div>
         <p className="text-sm text-gray-300">
           {contactInfo.email} <br /> {contactInfo.phone}
@@ -102,39 +151,44 @@ const EntriesCard = ({ id, title, userName, contactInfo, interactionHistory, sta
       </div>
 
       {/* Urgency */}
-      <div className='flex flex-col gap-y-2 items-start justify-center gap-x-2 mt-4'>
-        <Button className='text-xs font-gotham rounded-full bg-transparent flex items-center gap-x-2 hover:gap-x-4 transition-all border-white text-white hover:bg-purple-100/10 hover:text-white font-light' variant={"outline"} size={"sm"}>
+      <div className="flex flex-col gap-y-2 items-start justify-center gap-x-2 mt-4">
+        <Button
+          className="text-xs font-gotham rounded-full bg-transparent flex items-center gap-x-2 hover:gap-x-4 transition-all border-white text-white hover:bg-purple-100/10 hover:text-white font-light"
+          variant={"outline"}
+          size={"sm"}
+        >
           Go To Conversation <SendHorizontal />
         </Button>
-        <div className='flex justify-center'>
+        <div className="flex justify-center">
           {urgency === "High" && (
-              <div className='text-red-500 border-2 border-red-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1'>
-                High Urgency <TriangleAlert className='h-4 w-4' />
-              </div>
+            <div className="text-red-500 border-2 border-red-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1">
+              High Urgency <TriangleAlert className="h-4 w-4" />
+            </div>
           )}
           {urgency === "Mid" && (
-              <div className='text-yellow-500 border-2 border-yellow-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1'>
-                Mid Urgency <CircleAlert className='h-4 w-4' />
-              </div>
+            <div className="text-yellow-500 border-2 border-yellow-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1">
+              Mid Urgency <CircleAlert className="h-4 w-4" />
+            </div>
           )}
           {urgency === "Low" && (
-              <div className='text-green-500 border-2 border-green-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1'>
-                Low Urgency <CheckCircle className='h-4 w-4' />
-              </div>
+            <div className="text-green-500 border-2 border-green-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1">
+              Low Urgency <CheckCircle className="h-4 w-4" />
+            </div>
           )}
         </div>
       </div>
 
       {/* Notes */}
-      <div className='text-white mt-4'>
-        <p className="text-[13px]">Notes: <br /> {notes}</p>
+      <div className="text-white mt-4">
+        <p className="text-[13px]">
+          Notes: <br /> {notes}
+        </p>
       </div>
 
       {/* Timestamp */}
       <p className="text-xs text-white/75 mt-4">
         {new Date(timestamp).toLocaleDateString()}
       </p>
-     
     </div>
   );
 };
