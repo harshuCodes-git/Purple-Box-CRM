@@ -260,6 +260,11 @@ const Dashboard = () => {
   const handleDragStart = (event: any) => {
     const { active } = event;
     setActiveId(active.id);
+
+    const activeElement = document.querySelector(`[data-id="${active.id}"]`);
+    if (activeElement) {
+      activeElement.classList.add("opacity-30");
+    }
   };
 
   const handleDragEnd = (event: any) => {

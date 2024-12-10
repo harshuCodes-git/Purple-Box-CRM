@@ -62,6 +62,7 @@ const EntriesCard = ({
       {...attributes}
       {...listeners}
       style={style}
+      data-id={id}
     >
       <div
         className={`absolute top-4 right-4 rounded-md border-2 px-2 py-1 text-white/75 ${
