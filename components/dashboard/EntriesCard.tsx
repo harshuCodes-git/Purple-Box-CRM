@@ -77,7 +77,6 @@ const EntriesCard = ({
       >
         <p className="text-[13px]">{status}</p>
       </div>
-
       {/* Card Header */}
       <div className="flex flex-col gap-y-[4px]">
         <p className="text-sm text-gray-400">{title}</p>
@@ -114,9 +113,8 @@ const EntriesCard = ({
           {contactInfo.email} <br /> {contactInfo.phone}
         </p>
       </div>
-
-      {/* Interaction History */}
-      {interactionHistory.length > 0 && (
+      Interaction History
+      {/* {interactionHistory.length > 0 && (
         <div className="flex flex-wrap gap-2 mt-4">
           {interactionHistory.slice(0, 3).map((interaction, index) => (
             <span
@@ -143,14 +141,12 @@ const EntriesCard = ({
             </HoverCard>
           )}
         </div>
-      )}
-
+      )} */}
       {/* Status */}
       <div className="absolute bottom-4 right-4 flex items-center justify-center gap-x-4">
         <p className="text-xs text-white/80">{subcategory}</p>
         <div className={`${statusColor} h-2 w-2 rounded-full`} />
       </div>
-
       {/* Urgency */}
       <div className="flex flex-col gap-y-2 items-start justify-center gap-x-2 mt-4">
         <Button
@@ -178,14 +174,12 @@ const EntriesCard = ({
           )}
         </div>
       </div>
-
       {/* Notes */}
       <div className="text-white mt-4">
         <p className="text-[13px]">
           Notes: <br /> {notes}
         </p>
       </div>
-
       {/* Timestamp */}
       <p className="text-xs text-white/75 mt-4">
         {new Date(timestamp).toLocaleDateString()}

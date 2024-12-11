@@ -9,7 +9,6 @@ import Sidebar from "@/components/Sidebar";
 import Dashboard from "@/components/dashboard/Dashboard";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import Statistics from "@/components/dashboard/Statistics";
-import MobileDashboard from "@/components/dashboard/MobileDashboard";
 
 const CRMDashboard = () => {
   const [selectedColumn, setSelectedColumn] = useState<

@@ -111,15 +111,14 @@ const Dashboard = () => {
   // Realtime subscription
   useEffect(() => {
     const channel = supabase
-      .channel("new_customer_detail")
+      .channel("new-channel")
       .on(
-        "postgres_changes",
+        "broadcast",
         {
-          event: "*",
-          schema: "public",
-          table: "customer_detail",
+          event: "new-detail",
         },
         (payload) => {
+          console.log(payload);
           switch (payload.eventType) {
             case "INSERT":
               handleInsert(payload.new);
