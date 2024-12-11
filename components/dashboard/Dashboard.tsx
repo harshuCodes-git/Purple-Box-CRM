@@ -118,16 +118,15 @@ const Dashboard = () => {
           event: "new-detail",
         },
         (payload) => {
-          console.log(payload);
-          switch (payload.eventType) {
+          switch (payload.payload.eventType) {
             case "INSERT":
-              handleInsert(payload.new);
+              handleInsert(payload.payload.new);
               break;
             case "UPDATE":
-              handleUpdate(payload.old, payload.new);
+              handleUpdate(payload.payload.old, payload.payload.new);
               break;
             case "DELETE":
-              handleDelete(payload.old);
+              handleDelete(payload.payload.old);
               break;
           }
         }
