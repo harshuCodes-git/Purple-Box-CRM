@@ -224,7 +224,9 @@ const Dashboard = () => {
   const transformCardToTask = (card: any): Task => ({
     id: card.id,
     title: card.message,
-    userName: card.customer_channel.customer.name,
+    userName:
+      card.customer_channel.customer.name ??
+      card.customer_channel.credential_id,
     contactInfo: card.customer_channel.customer,
     interactionHistory: card.customer_channel.conversation,
     status: card.status,
