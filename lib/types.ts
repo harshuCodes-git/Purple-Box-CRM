@@ -14,6 +14,7 @@ export type Task = {
     email: string;
     phone: string;
   };
+  conversationLink: string;
   interactionHistory: string[];
   status: string;
   notes: string;
@@ -21,6 +22,8 @@ export type Task = {
   category: string;
   subcategory: string;
   timestamp: string;
+  resolved: boolean;
+  language: string;
 };
 
 export type Column = {

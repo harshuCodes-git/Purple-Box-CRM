@@ -21,29 +21,26 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 
-// Components Import
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
 import { Button } from "../ui/button";
 
 // Types Import
 import { SocialPlatform } from "@/lib/types";
+import Link from "next/link";
 
 const EntriesCard = ({
   id,
   title,
   userName,
   contactInfo,
-  interactionHistory,
+  conversationLink,
   status,
   notes,
   social: SocialIcon,
   urgency,
   subcategory,
   timestamp,
+  resolved,
+  language,
 }: Task) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
@@ -145,17 +142,23 @@ const EntriesCard = ({
       {/* Status */}
       <div className="absolute bottom-4 right-4 flex items-center justify-center gap-x-4">
         <p className="text-xs text-white/80">{subcategory}</p>
-        <div className={`${statusColor} h-2 w-2 rounded-full`} />
+        <div
+          className={`${
+            resolved ? "bg-green-500" : "bg-red-500"
+          } h-2 w-2 rounded-full`}
+        />
       </div>
       {/* Urgency */}
       <div className="flex flex-col gap-y-2 items-start justify-center gap-x-2 mt-4">
-        <Button
-          className="text-xs font-gotham rounded-full bg-transparent flex items-center gap-x-2 hover:gap-x-4 transition-all border-white text-white hover:bg-purple-100/10 hover:text-white font-light"
-          variant={"outline"}
-          size={"sm"}
-        >
-          Go To Conversation <SendHorizontal />
-        </Button>
+        <Link target="_blank" href={conversationLink}>
+          <Button
+            className="text-xs font-gotham rounded-full bg-transparent flex items-center gap-x-2 hover:gap-x-4 transition-all border-white text-white hover:bg-purple-100/10 hover:text-white font-light"
+            variant={"outline"}
+            size={"sm"}
+          >
+            Go To Conversation <SendHorizontal />
+          </Button>
+        </Link>
         <div className="flex justify-center">
           {urgency === "High" && (
             <div className="text-red-500 border-2 border-red-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1">
@@ -180,10 +183,13 @@ const EntriesCard = ({
           Notes: <br /> {notes}
         </p>
       </div>
-      {/* Timestamp */}
-      <p className="text-xs text-white/75 mt-4">
-        {new Date(timestamp).toLocaleDateString()}
-      </p>
+      {/* Timestamp and Language */}
+      <div className="flex items-center gap-2 mt-4">
+        <p className="text-xs text-white/75 ">
+          {new Date(timestamp).toLocaleDateString()}
+        </p>
+        -<p className="text-xs text-white/75">{language}</p>
+      </div>
     </div>
   );
 };

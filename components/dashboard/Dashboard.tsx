@@ -221,6 +221,17 @@ const Dashboard = () => {
     }
   };
 
+  const getConversationLink = (card: any) => {
+    switch (card.customer_channel.platform) {
+      case "whatsapp":
+        return `https://wa.me/${card.customer_channel.credential_id}`;
+      case "instagram":
+        return `https://instagram.com/${card.customer_channel.credential_id}`;
+      default:
+        return "";
+    }
+  };
+
   const transformCardToTask = (card: any): Task => ({
     id: card.id,
     title: card.message,
@@ -236,6 +247,9 @@ const Dashboard = () => {
     subcategory: card.sub_category,
     category: card.category,
     timestamp: new Date().toString(),
+    conversationLink: getConversationLink(card),
+    resolved: card.resolved,
+    language: card.language,
   });
 
   // Drag and Drop Handlers
