@@ -118,8 +118,9 @@ const Dashboard = () => {
           event: "new-detail",
         },
         (payload) => {
+          console.log(payload);
           switch (payload.payload.eventType) {
-            case "INSERT":
+            case "CREATE":
               handleInsert(payload.payload.new);
               break;
             case "UPDATE":
@@ -140,6 +141,7 @@ const Dashboard = () => {
 
   // Handle INSERT
   const handleInsert = (newCard: any) => {
+    console.log("inserting");
     const columnId = determineColumnId(newCard.category);
     const task = transformCardToTask(newCard);
 
@@ -154,45 +156,77 @@ const Dashboard = () => {
 
       return updatedColumns;
     });
+
+    console.log("inserted");
   };
 
   // Handle UPDATE
   const handleUpdate = (oldCard: any, newCard: any) => {
-    const oldColumnId = determineColumnId(oldCard.category);
+    console.log("Updating card:", { old: oldCard, new: newCard });
     const newColumnId = determineColumnId(newCard.category);
     const updatedTask = transformCardToTask(newCard);
 
     setColumns((prevColumns) => {
-      const updatedColumns = { ...prevColumns };
+      // First create a new columns object with old card removed
+      const withoutOldCard = Object.fromEntries(
+        Object.entries(prevColumns).map(([columnId, column]) => {
+          return [
+            columnId,
+            {
+              ...column,
+              tasks: column.tasks.filter((task) => task.id !== oldCard.id),
+            },
+          ];
+        })
+      );
 
-      // Remove from old column
-      updatedColumns[oldColumnId].tasks = updatedColumns[
-        oldColumnId
-      ].tasks.filter((task) => task.id !== oldCard.id);
-
-      // Add to new column
-      updatedColumns[newColumnId].tasks = [
+      // Then add updated card to correct column
+      withoutOldCard[newColumnId].tasks = [
         updatedTask,
-        ...updatedColumns[newColumnId].tasks,
+        ...withoutOldCard[newColumnId].tasks,
       ];
 
-      return updatedColumns;
+      console.log("Updated columns after update:", withoutOldCard);
+      return withoutOldCard;
     });
   };
 
   // Handle DELETE
-  const handleDelete = (deletedCard: any) => {
-    const columnId = determineColumnId(deletedCard.category);
+  const handleDelete = async (deletedCard: any) => {
+    try {
+      const cardId = deletedCard.id;
+      console.log("Deleting card:", cardId);
 
-    setColumns((prevColumns) => {
-      const updatedColumns = { ...prevColumns };
+      if (!cardId) {
+        console.error("No card ID found for deletion");
+        return;
+      }
 
-      updatedColumns[columnId].tasks = updatedColumns[columnId].tasks.filter(
-        (task) => task.id !== deletedCard.id
-      );
+      setColumns((prevColumns) => {
+        // Map through all columns and remove card with matching ID
+        const cleanedColumns = Object.fromEntries(
+          Object.entries(prevColumns).map(([columnId, column]) => [
+            columnId,
+            {
+              ...column,
+              // Filter out the deleted card
+              tasks: column.tasks.filter((task) => {
+                if (task.id === cardId) {
+                  console.log(`Removing task ${cardId} from ${columnId}`);
+                  return false;
+                }
+                return true;
+              }),
+            },
+          ])
+        );
 
-      return updatedColumns;
-    });
+        console.log("Columns after deletion:", cleanedColumns);
+        return cleanedColumns;
+      });
+    } catch (error) {
+      console.error("Error removing card from columns:", error);
+    }
   };
 
   // Helper functions
@@ -200,7 +234,11 @@ const Dashboard = () => {
     switch (category) {
       case "customer_support":
         return "column-support";
+      case "Customer Support":
+        return "column-support";
       case "customer_acquisition":
+        return "column-acquisition";
+      case "Customer Acquisition":
         return "column-acquisition";
       case "other":
       default:
@@ -389,7 +427,10 @@ const Dashboard = () => {
         </div>
         <DragOverlay>
           {activeId ? (
-            <EntriesCard {...(findActiveTask(activeId) as Task)} />
+            <EntriesCard
+              {...(findActiveTask(activeId) as Task)}
+              key={findActiveTask(activeId)?.id}
+            />
           ) : null}
         </DragOverlay>
       </DndContext>

@@ -35,6 +35,7 @@ export default function LoginPage() {
       email: "",
       password: "",
     },
+    mode: "onChange",
   });
   const [isLoading, setIsLoading] = useState(false);
 
