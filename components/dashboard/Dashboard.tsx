@@ -18,8 +18,10 @@ import EntriesColumn from "./EntriesColumn";
 import EntriesCard from "./EntriesCard";
 import { Column, Task } from "@/lib/types";
 
-const Dashboard = () => {
+const Dashboard = ({ id }: { id: string }) => {
   const supabase = getSupabaseFrontendClient();
+
+  console.log(id);
 
   // Helper function to get column icon (if needed)
   const getColumnIcon = (columnId: string): string | null => {
@@ -75,7 +77,16 @@ const Dashboard = () => {
     const fetchCards = async () => {
       const { data, error } = await supabase
         .from("customer_detail")
-        .select("*, customer_channel(*, customer(*))")
+        .select(
+          `
+        *,
+        customer_channel!inner (
+          *,
+          customer!inner (*, user!inner (*))
+        )
+      `
+        )
+        .eq("customer_channel.customer.user.astra_id", id)
         .order("created_at", { ascending: true });
 
       if (error) {
@@ -111,7 +122,7 @@ const Dashboard = () => {
   // Realtime subscription
   useEffect(() => {
     const channel = supabase
-      .channel("new-channel")
+      .channel(`new-channel-${id}`)
       .on(
         "broadcast",
         {

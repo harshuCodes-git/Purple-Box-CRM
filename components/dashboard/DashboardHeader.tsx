@@ -4,13 +4,7 @@
 import React from "react";
 import ColumnSelect from "./ColumnSelect";
 
-const DashboardHeader = ({
-  setColumn,
-}: {
-  setColumn: (
-    column: "Customer Support" | "Customer Acquisition" | "Others"
-  ) => void;
-}) => {
+const DashboardHeader = () => {
   return (
     <div className="#CB6CE6 pb-[1px] w-full bg-gradient rounded-t-xl">
       <div className="w-full px-4 py-2 bg-[#0A0A0A] rounded-t-xl flex items-center justify-between">

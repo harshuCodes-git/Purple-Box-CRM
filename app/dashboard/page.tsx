@@ -1,5 +1,3 @@
-"use client";
-
 // Library Import
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -9,12 +7,13 @@ import Sidebar from "@/components/Sidebar";
 import Dashboard from "@/components/dashboard/Dashboard";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import Statistics from "@/components/dashboard/Statistics";
+import createSupabaseServerClient from "@/lib/supabase/server";
 
-const CRMDashboard = () => {
-  const [selectedColumn, setSelectedColumn] = useState<
-    "Customer Support" | "Customer Acquisition" | "Others" | null
-  >("Customer Support");
-
+const CRMDashboard = async () => {
+  const supabase = await createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   return (
     <div className="h-screen">
       <Sidebar />
@@ -25,10 +24,10 @@ const CRMDashboard = () => {
           )}
         >
           <div className="bg-[#0A0A0A] relative w-full h-full inset-0 rounded-xl flex flex-col items-center">
-            <DashboardHeader setColumn={setSelectedColumn} />
+            <DashboardHeader />
             <Statistics />
             <div className="p-2 w-full h-full overflow-hidden">
-              <Dashboard />
+              <Dashboard id={user?.user_metadata.astra_id} />
               {/* <MobileDashboard selectedColumn={selectedColumn} /> */}
             </div>
           </div>
