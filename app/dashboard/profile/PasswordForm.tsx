@@ -15,56 +15,63 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
-import { getSupabaseFrontendClient } from "@/lib/supabase/client";
 
 const passwordSchema = z
   .object({
-    currentPassword: z
-      .string()
-      .min(8, "Password must be at least 8 characters."),
-    newPassword: z.string().min(8, "Password must be at least 8 characters."),
-    confirmPassword: z.string(),
+    password: z.string().min(8, "Password must be at least 8 characters."),
+    new_password: z.string().min(8, "Password must be at least 8 characters."),
+    new_password_confirmation: z.string(),
   })
-  .refine((data) => data.newPassword === data.confirmPassword, {
+  .refine((data) => data.new_password === data.new_password_confirmation, {
     message: "Passwords don't match",
-    path: ["confirmPassword"],
+    path: ["new_password_confirmation"],
   });
 
 export default function PasswordForm() {
   const [isLoading, setIsLoading] = useState(false);
-  const supabase = getSupabaseFrontendClient();
 
   const form = useForm({
     resolver: zodResolver(passwordSchema),
     defaultValues: {
-      currentPassword: "",
-      newPassword: "",
-      confirmPassword: "",
+      password: "",
+      new_password: "",
+      new_password_confirmation: "",
     },
   });
 
-  const onSubmit = async (data: {
-    currentPassword: string;
-    newPassword: string;
-    confirmPassword: string;
-  }) => {
+  type FormValues = z.infer<typeof passwordSchema>;
+
+  const onSubmit = async (data: FormValues) => {
     try {
       setIsLoading(true);
-      const { error } = await supabase.auth.updateUser({
-        password: data.newPassword,
+      const response = await fetch("/api/auth/reset-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          password: data.password,
+          new_password: data.new_password,
+          new_password_confirmation: data.new_password_confirmation,
+        }),
       });
 
-      if (error) throw error;
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to reset password");
+      }
 
       form.reset();
       toast({
-        title: "Password Updated",
-        description: "Your password has been updated successfully.",
+        title: "Success",
+        description: result.message,
       });
     } catch (error) {
       toast({
         title: "Error",
-        description: "Could not update password.",
+        description:
+          error instanceof Error ? error.message : "Could not update password.",
         variant: "destructive",
       });
     } finally {
@@ -82,7 +89,7 @@ export default function PasswordForm() {
 
         <FormField
           control={form.control}
-          name="currentPassword"
+          name="password"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Current Password</FormLabel>
@@ -100,7 +107,7 @@ export default function PasswordForm() {
 
         <FormField
           control={form.control}
-          name="newPassword"
+          name="new_password"
           render={({ field }) => (
             <FormItem>
               <FormLabel>New Password</FormLabel>
@@ -118,7 +125,7 @@ export default function PasswordForm() {
 
         <FormField
           control={form.control}
-          name="confirmPassword"
+          name="new_password_confirmation"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Confirm New Password</FormLabel>
