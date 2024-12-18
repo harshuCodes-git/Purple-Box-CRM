@@ -1,19 +1,17 @@
-"use client";
-
 import { cn } from "@/lib/utils";
-// import { ChevronsRight } from 'lucide-react';
 import PurpleLogo from "@/assets/Purple-Box Rebrand.png";
 import Image from "next/image";
-import { getSupabaseFrontendClient } from "@/lib/supabase/client";
-import { Button } from "./ui/button";
-import { useRouter } from "next/navigation";
-import { LogOut } from "lucide-react";
 import { DashboardIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import { ProfileContextButton } from "./ProfileContextButton";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import createSupabaseServerClient from "@/lib/supabase/server";
 
-const Sidebar = () => {
-  const supabase = getSupabaseFrontendClient();
-  const router = useRouter();
+const Sidebar = async () => {
+  const supabase = await createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   const sidebarItems = [
     {
@@ -23,10 +21,6 @@ const Sidebar = () => {
     },
   ];
 
-  const logout = async () => {
-    await supabase.auth.signOut({ scope: "local" });
-    router.push("/login");
-  };
   return (
     <div
       className={cn(
@@ -58,10 +52,16 @@ const Sidebar = () => {
             </Link>
           ))}
         </div>
-        <Button className="justify-self-end" onClick={logout}>
-          <LogOut />
-          Log Out
-        </Button>
+        <div className="flex justify-between items-center bg-white/10 border border-primary-purple p-3 rounded-full">
+          <div className="flex items-center gap-2 text-white">
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarFallback>PB</AvatarFallback>
+            </Avatar>{" "}
+            <p className="line-clamp-1">{user?.user_metadata.full_name}</p>
+          </div>
+          <ProfileContextButton />
+        </div>
       </div>
     </div>
   );

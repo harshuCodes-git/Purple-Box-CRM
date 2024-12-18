@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import Sidebar from "@/components/Sidebar";
 import Dashboard from "@/components/dashboard/Dashboard";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
-import Statistics from "@/components/dashboard/Statistics";
 import createSupabaseServerClient from "@/lib/supabase/server";
 
 const CRMDashboard = async () => {
@@ -25,7 +24,7 @@ const CRMDashboard = async () => {
         >
           <div className="bg-[#0A0A0A] relative w-full h-full inset-0 rounded-xl flex flex-col items-center">
             <DashboardHeader />
-            <Statistics />
+            {/* <Statistics /> */}
             <div className="p-2 w-full h-full overflow-hidden">
               <Dashboard id={user?.user_metadata.astra_id} />
               {/* <MobileDashboard selectedColumn={selectedColumn} /> */}

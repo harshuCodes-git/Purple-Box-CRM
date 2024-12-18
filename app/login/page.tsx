@@ -60,12 +60,15 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-primary-dark">
-      <div className="bg-card p-8 rounded-lg shadow-lg w-full max-w-md bg">
-        <h1 className="text-2xl font-bold text-primary-purple mb-6 text-center">
-          Login
+      <div className="bg-white/5 p-8 rounded-lg shadow-lg w-full max-w-md bg">
+        <h1 className="text-2xl font-bold text-white mb-6 text-center">
+          Login to Purple Box CRM
         </h1>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6 text-white"
+          >
             <FormField
               control={form.control}
               name="email"
@@ -77,6 +80,7 @@ export default function LoginPage() {
                       type="email"
                       placeholder="Enter your email"
                       {...field}
+                      className="border-primary-purple"
                     />
                   </FormControl>
                   <FormMessage />
@@ -94,6 +98,7 @@ export default function LoginPage() {
                       type="password"
                       placeholder="Enter your password"
                       {...field}
+                      className="border-primary-purple"
                     />
                   </FormControl>
                   <FormMessage />

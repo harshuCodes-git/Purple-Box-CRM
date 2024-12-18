@@ -63,11 +63,11 @@ const EntriesCard = ({
     >
       <div
         className={`absolute top-4 right-4 rounded-md border-2 px-2 py-1 text-white/75 ${
-          status === "Open"
+          status === "open"
             ? "bg-green-500/10 border-green-200"
-            : status === "Closed"
+            : status === "closed"
             ? "bg-red-500/10 border-red-200"
-            : status === "Active"
+            : status === "active"
             ? "bg-blue-500/10 border-blue-200"
             : "bg-gray-500 border-gray-500"
         }`}
@@ -160,17 +160,17 @@ const EntriesCard = ({
           </Button>
         </Link>
         <div className="flex justify-center">
-          {urgency === "High" && (
+          {urgency === "high" && (
             <div className="text-red-500 border-2 border-red-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1">
               High Urgency <TriangleAlert className="h-4 w-4" />
             </div>
           )}
-          {urgency === "Mid" && (
+          {urgency === "medium" && (
             <div className="text-yellow-500 border-2 border-yellow-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1">
               Mid Urgency <CircleAlert className="h-4 w-4" />
             </div>
           )}
-          {urgency === "Low" && (
+          {urgency === "low" && (
             <div className="text-green-500 border-2 border-green-500 rounded-full text-sm flex items-center gap-x-2 px-3 py-1">
               Low Urgency <CheckCircle className="h-4 w-4" />
             </div>
