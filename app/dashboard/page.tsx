@@ -26,7 +26,7 @@ const CRMDashboard = async () => {
             <DashboardHeader />
             {/* <Statistics /> */}
             <div className="p-2 w-full h-full overflow-hidden">
-              <Dashboard id={user?.user_metadata.astra_id} />
+              <Dashboard id={user?.id!} />
               {/* <MobileDashboard selectedColumn={selectedColumn} /> */}
             </div>
           </div>

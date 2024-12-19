@@ -86,7 +86,7 @@ const Dashboard = ({ id }: { id: string }) => {
         )
       `
         )
-        .eq("customer_channel.customer.user.astra_id", id)
+        .eq("customer_channel.customer.user.id", id)
         .order("created_at", { ascending: true });
 
       if (error) {
@@ -150,7 +150,6 @@ const Dashboard = ({ id }: { id: string }) => {
     };
   }, []);
 
-  // Handle INSERT
   const handleInsert = (newCard: any) => {
     console.log("inserting");
     const columnId = determineColumnId(newCard.category);
@@ -159,7 +158,6 @@ const Dashboard = ({ id }: { id: string }) => {
     setColumns((prevColumns) => {
       const updatedColumns = { ...prevColumns };
 
-      // Columns already initialized, no need to check if they exist
       updatedColumns[columnId].tasks = [
         ...updatedColumns[columnId].tasks,
         task,
@@ -171,14 +169,12 @@ const Dashboard = ({ id }: { id: string }) => {
     console.log("inserted");
   };
 
-  // Handle UPDATE
   const handleUpdate = (oldCard: any, newCard: any) => {
     console.log("Updating card:", { old: oldCard, new: newCard });
     const newColumnId = determineColumnId(newCard.category);
     const updatedTask = transformCardToTask(newCard);
 
     setColumns((prevColumns) => {
-      // First create a new columns object with old card removed
       const withoutOldCard = Object.fromEntries(
         Object.entries(prevColumns).map(([columnId, column]) => {
           return [
