@@ -81,6 +81,8 @@ export default function LoginPage() {
                       placeholder="Enter your email"
                       {...field}
                       className="border-primary-purple"
+                      enterKeyHint="next"
+                      inputMode="email"
                     />
                   </FormControl>
                   <FormMessage />
@@ -99,6 +101,7 @@ export default function LoginPage() {
                       placeholder="Enter your password"
                       {...field}
                       className="border-primary-purple"
+                      enterKeyHint="done"
                     />
                   </FormControl>
                   <FormMessage />
