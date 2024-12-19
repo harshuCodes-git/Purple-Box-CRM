@@ -83,6 +83,7 @@ export default function LoginPage() {
                       className="border-primary-purple"
                       enterKeyHint="next"
                       inputMode="email"
+                      id="email"
                     />
                   </FormControl>
                   <FormMessage />
@@ -102,6 +103,7 @@ export default function LoginPage() {
                       {...field}
                       className="border-primary-purple"
                       enterKeyHint="done"
+                      id="password"
                     />
                   </FormControl>
                   <FormMessage />
