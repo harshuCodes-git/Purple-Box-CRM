@@ -76,11 +76,11 @@ export default function LoginPage() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input
+                    <input
                       type="email"
                       placeholder="Enter your email"
                       {...field}
-                      className="border-primary-purple"
+                      className="border border-primary-purple rounded-lg w-full p-2 bg-transparent"
                       enterKeyHint="next"
                       inputMode="email"
                       id="email"
@@ -97,11 +97,11 @@ export default function LoginPage() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input
+                    <input
                       type="password"
                       placeholder="Enter your password"
                       {...field}
-                      className="border-primary-purple"
+                      className="border border-primary-purple rounded-lg w-full p-2 bg-transparent"
                       enterKeyHint="done"
                       id="password"
                     />
