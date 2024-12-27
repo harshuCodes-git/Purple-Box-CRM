@@ -82,11 +82,11 @@ const Dashboard = ({ id }: { id: string }) => {
         *,
         customer_channel!inner (
           *,
-          customer!inner (*, user!inner (*))
+          customer!inner (*)
         )
       `
         )
-        .eq("customer_channel.customer.user.id", id)
+        .eq("customer_channel.customer.client_id", id)
         .order("created_at", { ascending: true });
 
       if (error) {
